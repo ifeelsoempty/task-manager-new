@@ -13,6 +13,7 @@ class App extends Component {
   }
 }
 
+
 export default App;
 
 if (module.hot) {
