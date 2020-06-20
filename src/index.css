@@ -47,7 +47,7 @@ code {
   width: 300px;
   border-radius: 7px;
   box-shadow: 10px 10px 10px #0000001e;
-  overflow: hidden;  
+  overflow: hidden;
 }
 
 .top {
@@ -64,6 +64,7 @@ code {
 .task-input {
   background-color: var(--text);
   display: flex;
+  justify-content: space-between;
   padding: 5px;
 }
 
@@ -73,6 +74,7 @@ code {
 
 .task-input input {
   width: 100%;
+  height: 31px;
   border: none;
   padding: 5px;
   font-size: 14px;
@@ -96,8 +98,10 @@ code {
 
 .task {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 10px 15px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .task:hover {
@@ -112,17 +116,30 @@ code {
 }
 
 .task-done {
-  background-color: #00000027;
+  background-color: #727dad3b;
 }
+
+.task-done-line{
+  text-decoration-line:line-through;
+}
+
 .task-done p {
   color: #00000050;
 }
 
+.description{
+  max-width: 230px;
+}
+
 .action-btn {
+  background: #ffffff00;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  margin-left: 10px;
+  border-radius: 5px;
+  border: 0;
 }
 .action-btn:hover {
-  background-color: #000cb33d;
+  box-shadow: 7px 7px 7px inset var(--text);
   border-radius: 5px;
 }

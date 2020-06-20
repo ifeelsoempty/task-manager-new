@@ -26,7 +26,7 @@
                 if($id){
                     $db = Db::getConnection();
 
-                    $result = $db->query('SELECT * FROM tasks WHERE board_id = ' . $id);
+                    $result = $db->query('SELECT * FROM tasks WHERE board_id = '. $id .' ORDER BY done ASC');
 
                     $result->setFetchMode(PDO::FETCH_ASSOC);
 

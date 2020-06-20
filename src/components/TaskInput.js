@@ -17,18 +17,20 @@ class TaskInput extends Component {
     });
   };
 
-  submitTask = (e) => {
-    fetch("http://app-react/api/task/create", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(this.state.taskData),
-    }).then(() => {
-      this.props.renderTasks();
-    });
-    this.setState({ taskData: { description: "" } });
+  submitTask = () => {
+    if (this.state.taskData.description.trim() !== "") {
+      fetch("http://app-react/api/task/create", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.state.taskData),
+      }).then(() => {
+        this.props.getTasks();
+      });
+      this.setState({ taskData: { description: "" } });
+    }
   };
 
   render() {
@@ -38,7 +40,7 @@ class TaskInput extends Component {
           onChange={this.addValueToState}
           className="input"
           value={this.state.taskData.description}
-        ></input>
+        />
         <button onClick={this.submitTask} className="button">
           Add
         </button>

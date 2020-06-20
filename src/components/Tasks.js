@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TaskInput from "./TaskInput";
+import ActionButton from "./ActionButton";
 import Axios from "axios";
 
 class Tasks extends Component {
@@ -8,10 +9,10 @@ class Tasks extends Component {
   };
 
   componentDidMount() {
-    this.renderTasks();
+    this.getTasks();
   }
 
-  renderTasks = () => {
+  getTasks = () => {
     Axios.post(`http://app-react/api/boards/${this.props.boardId}/tasks`).then(
       (res) => {
         const tasks = res.data;
@@ -26,12 +27,17 @@ class Tasks extends Component {
       <div>
         {this.state.tasks.map((task) => {
           return (
-            <div key={task.id} className="task">
-              {task.description}
+            <div key={task.id} className={task.done === "1" ? "task task-done" : "task"}>
+              <div className={task.done === "1" ? "description task-done-line" : "description"}>{task.description}</div>
+              <ActionButton
+                task={task}
+                getTasks={this.getTasks}
+                className="action-btn"
+              />
             </div>
           );
         })}
-        <TaskInput renderTasks={this.renderTasks} boardId={boardId} />
+        <TaskInput getTasks={this.getTasks} boardId={boardId} />
       </div>
     );
   }
