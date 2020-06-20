@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TaskInput from "./TaskInput";
-import ActionButton from "./ActionButton";
+import CheckButton from "./CheckButton";
 import Axios from "axios";
 
 class Tasks extends Component {
@@ -29,10 +29,10 @@ class Tasks extends Component {
           return (
             <div key={task.id} className={task.done === "1" ? "task task-done" : "task"}>
               <div className={task.done === "1" ? "description task-done-line" : "description"}>{task.description}</div>
-              <ActionButton
+              <CheckButton
                 task={task}
                 getTasks={this.getTasks}
-                className="action-btn"
+                className="check-btn"
               />
             </div>
           );

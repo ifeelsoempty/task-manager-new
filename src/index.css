@@ -80,6 +80,15 @@ code {
   font-size: 14px;
   font-weight: 500;
   color: var(--text);
+  outline: 0 !important;
+}
+.task-input input:focus {
+  outline: 0 !important;
+  box-shadow: 0 0 5px inset #001f8560;
+}
+
+.check-btn::-moz-focus-inner {
+  border: 0 !important;
 }
 
 .task-input button {
@@ -91,9 +100,20 @@ code {
   margin-left: 10px;
 }
 
+.task-input button:active,
+.task-input button:focus {
+  outline: none !important;
+}
+
+.task-input button::-moz-focus-inner {
+  border: 0 !important;
+}
+
 .task-input button:hover {
-  background-color: #ffffff1e;
-  opacity: 0.7;
+  box-shadow: 3px 3px 3px inset var(--text);
+}
+.task-input button:active {
+  box-shadow: 7px 7px 7px inset var(--text);
 }
 
 .task {
@@ -119,27 +139,40 @@ code {
   background-color: #727dad3b;
 }
 
-.task-done-line{
-  text-decoration-line:line-through;
+.task-done-line {
+  text-decoration-line: line-through;
 }
 
 .task-done p {
   color: #00000050;
 }
 
-.description{
+.description {
   max-width: 230px;
 }
 
-.action-btn {
+.check-btn {
   background: #ffffff00;
   width: 30px;
   height: 30px;
   cursor: pointer;
   border-radius: 5px;
   border: 0;
+  outline: 0;
 }
-.action-btn:hover {
+.check-btn:hover {
   box-shadow: 7px 7px 7px inset var(--text);
   border-radius: 5px;
+}
+
+.check-btn:active,
+.check-btn:focus {
+  outline: none !important;
+}
+.check-btn:active{
+  box-shadow: 10px 10px 10px inset var(--text);
+}
+
+.check-btn::-moz-focus-inner {
+  border: 0 !important;
 }

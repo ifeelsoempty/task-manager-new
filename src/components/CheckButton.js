@@ -1,6 +1,6 @@
 import React from "react";
 
-const ActionButton = ({ task, getTasks, className } ) => {
+const CheckButton = ({ task, getTasks, className } ) => {
   function doneTask() {
     task.done = 1;
     fetch("http://app-react/api/task/update", {
@@ -22,4 +22,4 @@ const ActionButton = ({ task, getTasks, className } ) => {
   );
 };
 
-export default ActionButton;
+export default CheckButton;
