@@ -21,6 +21,7 @@ class Tasks extends Component {
   };
 
   render() {
+    const { boardId } = this.props;
     return (
       <div>
         {this.state.tasks.map((task) => {
@@ -30,10 +31,7 @@ class Tasks extends Component {
             </div>
           );
         })}
-        <TaskInput
-          renderTasks={this.renderTasks}
-          boardId={this.props.boardId}
-        />
+        <TaskInput renderTasks={this.renderTasks} boardId={boardId} />
       </div>
     );
   }

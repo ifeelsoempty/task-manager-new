@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 
 class TaskInput extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      taskData: {
-        description: "",
-        board_id: "",
-      },
-    };
-  }
+  state = {
+    taskData: {
+      description: "",
+      board_id: this.props.boardId,
+    },
+  };
 
   addValueToState = (event) => {
     this.setState({
@@ -32,16 +28,17 @@ class TaskInput extends Component {
     }).then(() => {
       this.props.renderTasks();
     });
-    const input = document.querySelectorAll(".task-input input")[
-      this.props.boardId - 1
-    ];
-    input.value = "";
+    this.setState({ taskData: { description: "" } });
   };
 
   render() {
     return (
       <div className="task-input">
-        <input onChange={this.addValueToState} className="input"></input>
+        <input
+          onChange={this.addValueToState}
+          className="input"
+          value={this.state.taskData.description}
+        ></input>
         <button onClick={this.submitTask} className="button">
           Add
         </button>
