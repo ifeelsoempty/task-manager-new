@@ -1,7 +1,7 @@
 import React from "react";
 
-const CheckButton = ({ task, getTasks, className } ) => {
-  function doneTask() {
+const CheckButton = ({ task, getTasks, className, children }) => {
+  function checkTask() {
     task.done = 1;
     fetch("http://app-react/api/task/update", {
       method: "POST",
@@ -16,8 +16,8 @@ const CheckButton = ({ task, getTasks, className } ) => {
   }
 
   return (
-    <button onClick={doneTask} className={className}>
-      <div>{task.done === "1" ? "✗" : "✓"}</div>
+    <button className={className} onClick={checkTask}>
+      {children}
     </button>
   );
 };
