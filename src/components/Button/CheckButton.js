@@ -1,6 +1,6 @@
 import React from "react";
 
-const CheckButton = ({ task, getTasks, className, children }) => {
+const CheckButton = ({ removeModal, task, getTasks, children, taskCoordinates }) => {
   function checkTask() {
     task.done = 1;
     fetch("http://app-react/api/task/update", {
@@ -10,13 +10,20 @@ const CheckButton = ({ task, getTasks, className, children }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
-    }).then(() => {
-      getTasks();
-    });
+    })
+      .then(getTasks)
+      .then(removeModal);
   }
 
   return (
-    <button className={className} onClick={checkTask}>
+    <button
+      style={{
+        left: `${taskCoordinates.x + (taskCoordinates.width / 100) * 89}px`,
+        top: `-${taskCoordinates.height + 37}px`
+      }}
+      className="update-btns check-btn"
+      onClick={checkTask}
+    >
       {children}
     </button>
   );

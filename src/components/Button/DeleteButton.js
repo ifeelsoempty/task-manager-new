@@ -1,6 +1,12 @@
 import React from "react";
 
-const DeleteButton = ({ task, getTasks, className, children }) => {
+const DeleteButton = ({
+  removeModal,
+  task,
+  getTasks,
+  children,
+  taskCoordinates,
+}) => {
   function deleteTask() {
     fetch("http://app-react/api/task/delete", {
       method: "POST",
@@ -9,13 +15,20 @@ const DeleteButton = ({ task, getTasks, className, children }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
-    }).then(() => {
-      getTasks();
-    });
+    })
+      .then(getTasks)
+      .then(removeModal);
   }
 
   return (
-    <button className={className} onClick={deleteTask}>
+    <button
+      style={{
+        left: `${taskCoordinates.x + (taskCoordinates.width / 100) * 89}px`,
+        top: `-${taskCoordinates.height + 47}px`
+      }}
+      className="update-btns delete-btn"
+      onClick={deleteTask}
+    >
       {children}
     </button>
   );

@@ -5,8 +5,9 @@ import "./index";
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div id="app">
         <Boards />
+        <div id="modal-container"></div>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import TaskInput from "./TaskInput";
-import TaskButton from "./Button/TaskButton";
+import UpdateModal from "./UpdateModal";
 import Axios from "axios";
 
 class Tasks extends Component {
@@ -8,7 +9,7 @@ class Tasks extends Component {
     tasks: [],
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.getTasks();
   }
 
@@ -21,19 +22,70 @@ class Tasks extends Component {
     );
   };
 
+  updateTask = (updatedValue, task) => {
+    const updatedTask = task;
+    updatedTask.description = updatedValue;
+    console.log(updatedTask);
+    fetch("http://app-react/api/task/update", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedTask),
+    })
+      .then(this.getTasks)
+      .then(this.removeModal);
+  };
+
+  createModal = (task) => {
+    ReactDOM.render(
+      <UpdateModal
+        updateTask={this.updateTask}
+        task={task}
+        removeModal={this.removeModal}
+        getTasks={this.getTasks}
+      />,
+      document.getElementById("modal-container")
+    );
+  };
+
+  removeModal = (e) => {
+    ReactDOM.unmountComponentAtNode(
+      document.getElementById("modal-container"),
+      document.getElementsByClassName("modal")[0]
+    );
+  };
+
   render() {
     const { boardId } = this.props;
     return (
       <div>
         {this.state.tasks.map((task) => {
           return (
-            <div key={task.id} className={task.done === "1" ? "task task-done" : "task"}>
-              <div className={task.done === "1" ? "description task-done-line" : "description"}>{task.description}</div>
-              <TaskButton
-                task={task}
-                getTasks={this.getTasks}
-                className="check-btn"
-              />
+            <div
+              id={task.id}
+              key={task.id}
+              className={task.done === "1" ? "task task-done" : "task"}
+            >
+              <div
+                className={
+                  task.done === "1"
+                    ? "task-description task-done-line"
+                    : "task-description"
+                }
+              >
+                {task.description}
+              </div>
+              <button
+                className="task-btn"
+                onClick={() => this.createModal(task)}
+              >
+                <img
+                  src="https://img.icons8.com/windows/20/000000/edit.png"
+                  className="task-btn-image"
+                />
+              </button>
             </div>
           );
         })}
