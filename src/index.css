@@ -96,7 +96,6 @@ code {
   border: none;
   font-size: 14px;
   color: #ffffff;
-  cursor: pointer;
   margin-left: 10px;
 }
 
@@ -122,6 +121,7 @@ code {
   padding: 10px 15px;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
 .task:hover {
@@ -149,6 +149,13 @@ code {
 
 .description {
   max-width: 230px;
+}
+
+.description::selection {
+  background: transparent;
+}
+.description::-moz-selection {
+  background: transparent;
 }
 
 .check-btn {
