@@ -1,6 +1,12 @@
 import React from "react";
 
-const CheckButton = ({ removeModal, task, getTasks, children, taskCoordinates }) => {
+const CheckButton = ({
+  removeModal,
+  task,
+  getTasks,
+  children,
+  taskCoordinates,
+}) => {
   function checkTask() {
     task.done = 1;
     fetch("http://app-react/api/task/update", {
@@ -19,7 +25,7 @@ const CheckButton = ({ removeModal, task, getTasks, children, taskCoordinates })
     <button
       style={{
         left: `${taskCoordinates.x + (taskCoordinates.width / 100) * 89}px`,
-        top: `-${taskCoordinates.height + 37}px`
+        top: `-${taskCoordinates.height + 37}px`,
       }}
       className="update-btns check-btn"
       onClick={checkTask}

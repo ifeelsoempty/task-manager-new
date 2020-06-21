@@ -24,7 +24,7 @@ const DeleteButton = ({
     <button
       style={{
         left: `${taskCoordinates.x + (taskCoordinates.width / 100) * 89}px`,
-        top: `-${taskCoordinates.height + 47}px`
+        top: `-${taskCoordinates.height + 47}px`,
       }}
       className="update-btns delete-btn"
       onClick={deleteTask}
