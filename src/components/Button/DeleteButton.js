@@ -1,12 +1,6 @@
 import React from "react";
 
-const DeleteButton = ({
-  removeModal,
-  task,
-  getTasks,
-  children,
-  taskCoordinates,
-}) => {
+const DeleteButton = ({ removeModal, task, children, taskCoordinates }) => {
   function deleteTask() {
     fetch("http://app-react/api/task/delete", {
       method: "POST",
@@ -15,9 +9,7 @@ const DeleteButton = ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
-    })
-      .then(getTasks)
-      .then(removeModal);
+    }).then(removeModal);
   }
 
   return (

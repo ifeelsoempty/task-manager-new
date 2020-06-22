@@ -33,9 +33,7 @@ class Tasks extends Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedTask),
-    })
-      .then(this.getTasks)
-      .then(this.removeModal);
+    }).then(this.removeModal);
   };
 
   createModal = (task) => {

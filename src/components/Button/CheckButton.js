@@ -3,7 +3,6 @@ import React from "react";
 const CheckButton = ({
   removeModal,
   task,
-  getTasks,
   children,
   taskCoordinates,
 }) => {
@@ -16,9 +15,7 @@ const CheckButton = ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
-    })
-      .then(getTasks)
-      .then(removeModal);
+    }).then(removeModal);
   }
 
   return (

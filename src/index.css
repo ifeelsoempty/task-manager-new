@@ -235,18 +235,32 @@ code {
   width: 40px;
   height: 40px;
   border-radius: 3px;
-  box-shadow: 7px 7px 7px #00000044;
+  box-shadow: 5px 5px 5px #00000044;
+}
+
+.update-btns:hover {
+  transition: ease-in-out 0.2s;
+  box-shadow: 10px 10px 10px #00000044;
 }
 
 .save-btn {
   top: 3px;
   background-color: rgb(90, 172, 68);
 }
+.save-btn:hover {
+  background-color: rgb(79, 145, 60);
+}
 
 .delete-btn {
   background-color: rgb(211, 69, 69);
 }
+.delete-btn:hover {
+  background-color: rgb(185, 62, 62);
+}
 
 .check-btn {
   background-color: rgb(27, 114, 255);
+}
+.check-btn:hover{
+  background-color: rgb(23, 97, 214);
 }
