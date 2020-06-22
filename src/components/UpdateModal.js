@@ -7,11 +7,11 @@ class UpdateModal extends Component {
     updatedValue: {},
   };
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.props.getTasks();
   }
   render() {
-    const { task, removeModal, updateTask} = this.props;
+    const { task, removeModal, updateTask } = this.props;
     const taskDOM = document.getElementById(`${task.id}`);
     const taskCoordinates = taskDOM.getBoundingClientRect();
     return (
@@ -43,13 +43,6 @@ class UpdateModal extends Component {
         >
           Save
         </button>
-        <DeleteButton
-          taskCoordinates={taskCoordinates}
-          removeModal={removeModal}
-          task={task}
-        >
-          ✗
-        </DeleteButton>
         <CheckButton
           taskCoordinates={taskCoordinates}
           removeModal={removeModal}
@@ -57,6 +50,13 @@ class UpdateModal extends Component {
         >
           ✓
         </CheckButton>
+        <DeleteButton
+          taskCoordinates={taskCoordinates}
+          removeModal={removeModal}
+          task={task}
+        >
+          ✗
+        </DeleteButton>
       </div>
     );
   }

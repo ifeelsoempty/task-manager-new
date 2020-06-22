@@ -16,7 +16,7 @@ const DeleteButton = ({ removeModal, task, children, taskCoordinates }) => {
     <button
       style={{
         left: `${taskCoordinates.x + (taskCoordinates.width / 100) * 89}px`,
-        top: `-${taskCoordinates.height + 47}px`,
+        top: `-${taskCoordinates.height + 37}px`,
       }}
       className="update-btns delete-btn"
       onClick={deleteTask}
