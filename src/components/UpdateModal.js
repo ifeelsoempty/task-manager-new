@@ -17,7 +17,7 @@ class UpdateModal extends Component {
     return (
       <div
         className="modal"
-        onClick={(e) =>
+        onMouseDown={(e) =>
           e.target.className === "modal" ? removeModal() : false
         }
       >

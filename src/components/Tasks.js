@@ -9,7 +9,7 @@ class Tasks extends Component {
     tasks: [],
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.getTasks();
   }
 
