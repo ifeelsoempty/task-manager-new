@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import TaskInput from "./TaskInput";
-import UpdateModal from "./UpdateModal";
+import UpdateTaskModal from "./Modals/UpdateTaskModal";
 import Axios from "axios";
 
 class Tasks extends Component {
@@ -22,36 +22,21 @@ class Tasks extends Component {
     );
   };
 
-  updateTask = (updatedValue, task) => {
-    const updatedTask = task;
-    updatedTask.description = updatedValue;
-    console.log(updatedTask);
-    fetch("http://app-react/api/task/update", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedTask),
-    }).then(this.removeModal);
-  };
-
   createModal = (task) => {
     ReactDOM.render(
-      <UpdateModal
-        updateTask={this.updateTask}
+      <UpdateTaskModal
         task={task}
         removeModal={this.removeModal}
         getTasks={this.getTasks}
       />,
-      document.getElementById("modal-container")
+      document.getElementById("update-task-modal-container")
     );
   };
 
   removeModal = (e) => {
     ReactDOM.unmountComponentAtNode(
-      document.getElementById("modal-container"),
-      document.getElementsByClassName("modal")[0]
+      document.getElementById("update-task-modal-container"),
+      document.getElementById("update-task-modal")[0]
     );
   };
 

@@ -1,21 +1,38 @@
 import React, { Component } from "react";
-import DeleteButton from "./Button/DeleteButton";
-import CheckButton from "./Button/CheckButton";
+import DeleteButton from "../Buttons/DeleteButton";
+import CheckButton from "../Buttons/CheckButton";
 
 class UpdateModal extends Component {
   state = {
     updatedValue: {},
   };
-
+  componentDidMount() {
+    const UpdateTaskInputDOM = document.getElementsByClassName(
+      "update-task-input"
+    )[0];
+    UpdateTaskInputDOM.select();
+  }
   componentWillUnmount() {
     this.props.getTasks();
   }
+
+  updateTask = () => {
+    const updatedTask = this.props.task;
+    updatedTask.description = this.state.updatedValue;
+    console.log(updatedTask);
+    fetch("http://app-react/api/task/update", {
+      method: "POST",
+      body: JSON.stringify(updatedTask),
+    }).then(this.props.removeModal);
+  };
+
   render() {
-    const { task, removeModal, updateTask } = this.props;
+    const { task, removeModal } = this.props;
     const taskDOM = document.getElementById(`${task.id}`);
     const taskCoordinates = taskDOM.getBoundingClientRect();
     return (
       <div
+        id="update-task-modal"
         className="modal"
         onMouseDown={(e) =>
           e.target.className === "modal" ? removeModal() : false
@@ -23,12 +40,12 @@ class UpdateModal extends Component {
       >
         <textarea
           onChange={(e) => this.setState({ updatedValue: e.target.value })}
-          className="update-input"
+          className="update-task-input"
           style={{
             width: `${(taskCoordinates.width / 100) * 86}px`,
             height: `${taskCoordinates.height}px`,
-            marginTop: `${taskCoordinates.y}px`,
-            marginLeft: `${taskCoordinates.x}px`,
+            top: `${taskCoordinates.y}px`,
+            left: `${taskCoordinates.x}px`,
           }}
         >
           {task.description}
@@ -37,9 +54,10 @@ class UpdateModal extends Component {
           style={{
             left: `${taskCoordinates.x}px`,
             width: `${(taskCoordinates.width / 100) * 86}px`,
+            top: `${taskCoordinates.y}px`,
           }}
-          className="update-btns save-btn"
-          onClick={() => updateTask(this.state.updatedValue, task)}
+          className="update-btns update-btn"
+          onClick={this.updateTask}
         >
           Save
         </button>
@@ -47,16 +65,12 @@ class UpdateModal extends Component {
           taskCoordinates={taskCoordinates}
           removeModal={removeModal}
           task={task}
-        >
-          ✓
-        </CheckButton>
+        />
         <DeleteButton
           taskCoordinates={taskCoordinates}
           removeModal={removeModal}
           task={task}
-        >
-          ✗
-        </DeleteButton>
+        />
       </div>
     );
   }

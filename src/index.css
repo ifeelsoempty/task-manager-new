@@ -5,7 +5,7 @@ body {
   font-weight: 100;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0000001c;
+  background: #0000001b;
 }
 
 button {
@@ -18,6 +18,15 @@ button:focus {
 }
 button::-moz-focus-inner {
   border: 0 !important;
+}
+
+textarea{
+  border: 0 !important;
+  resize: none;
+  overflow: visible;
+}
+textarea:focus {
+  outline: 0 !important;
 }
 
 @font-face {
@@ -50,12 +59,13 @@ code {
 .boards {
   display: flex;
   flex-direction: row;
+  margin: 25px 0;
 }
 
 .board {
+  margin-left: 25px;
   background: #ffffff;
   height: 100%;
-  margin: 25px 0 0 25px;
   min-width: 350px;
   max-width: 350px;
   border-radius: 7px;
@@ -63,13 +73,27 @@ code {
   overflow: hidden;
 }
 
+.add-board-btn {
+  display: flex;
+  color: #ffffff;
+  font-size: 28px;
+  font-family: "RobotoThin";
+  background: var(--text);
+  opacity: 0.3;
+  font-weight: 500;
+  padding: 5px 10px;
+}
+.add-board-btn:hover {
+  opacity: 0.6;
+}
+
 .top {
+  margin: 0;
   font-family: "RobotoThin";
   background: var(--text);
   color: #ffffff;
   padding: 10px;
   font-size: 28px;
-  margin: 0;
   font-weight: 500;
   border-radius: 5px 5px 0 0;
 }
@@ -123,17 +147,25 @@ code {
   box-shadow: 7px 7px 7px inset var(--text);
 }
 
-.update-input {
+.update-task-input {
+  position: relative;
   overflow: hidden;
   z-index: 1;
   padding: 8px 10px;
-  border: 0 !important;
   border-radius: 3px;
   box-shadow: 7px 7px 7px #00000044;
-  resize: none;
 }
-.update-input:focus {
-  outline: 0 !important;
+
+.add-board-input {
+  position: absolute;
+  margin: 0;
+  font-family: "RobotoThin";
+  font-size: 25px;
+  font-weight: 500;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 3px inset var(--text);
+  border-radius: 5px;
+  border: 15px solid var(--text);
 }
 
 .task {
@@ -235,18 +267,17 @@ code {
   width: 40px;
   height: 40px;
   border-radius: 3px;
-  box-shadow: 5px 5px 5px #00000044;
+  box-shadow: 3px 3px 3px #00000044;
 }
 
 .update-btns:hover {
   box-shadow: 10px 10px 10px #00000044;
 }
 
-.save-btn {
-  top: 3px;
+.update-btn {
   background-color: rgb(90, 172, 68);
 }
-.save-btn:hover {
+.update-btn:hover {
   background-color: rgb(79, 145, 60);
 }
 
@@ -260,6 +291,19 @@ code {
 .check-btn {
   background-color: rgb(27, 114, 255);
 }
-.check-btn:hover{
+.check-btn:hover {
   background-color: rgb(23, 97, 214);
+}
+
+.accept-board-btn{
+  height: 35px;
+  position: relative;
+  color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 3px 3px 7px #00000025;
+  background-color: rgba(91, 172, 68, 0.575);
+}
+
+.accept-board-btn:hover {
+  background-color: rgba(78, 145, 60, 0.534);
 }

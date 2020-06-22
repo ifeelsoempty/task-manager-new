@@ -25,4 +25,14 @@
 
             return true;
         }
+
+        public function CreateBoard(){
+            $json_str = file_get_contents('php://input');
+            $board = json_decode($json_str);
+
+            $created = BoardsService::createBoard($board);
+
+            echo json_encode($created);
+            return true;
+        }
     }

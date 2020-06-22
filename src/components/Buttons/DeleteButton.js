@@ -1,13 +1,9 @@
 import React from "react";
 
-const DeleteButton = ({ removeModal, task, children, taskCoordinates }) => {
+const DeleteButton = ({ removeModal, task, taskCoordinates }) => {
   function deleteTask() {
     fetch("http://app-react/api/task/delete", {
       method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(task),
     }).then(removeModal);
   }
@@ -15,13 +11,13 @@ const DeleteButton = ({ removeModal, task, children, taskCoordinates }) => {
   return (
     <button
       style={{
-        left: `${taskCoordinates.x + (taskCoordinates.width / 100) * 89}px`,
-        top: `-${taskCoordinates.height + 37}px`,
+        left: `${taskCoordinates.x + (taskCoordinates.width / 100) * 89 - 5}px`,
+        top: `${taskCoordinates.y - taskCoordinates.height - 40}px`,
       }}
       className="update-btns delete-btn"
       onClick={deleteTask}
     >
-      {children}
+      ✗
     </button>
   );
 };
