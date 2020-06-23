@@ -153,7 +153,6 @@ code {
   z-index: 1;
   padding: 8px 10px;
   border-radius: 3px;
-  box-shadow: 7px 7px 7px #00000044;
 }
 
 .add-board-input {
@@ -271,7 +270,7 @@ code {
 }
 
 .update-btns:hover {
-  box-shadow: 10px 10px 10px #00000044;
+  box-shadow: 5px 5px 5px #00000044;
 }
 
 .update-btn {

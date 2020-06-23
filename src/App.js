@@ -7,8 +7,7 @@ class App extends Component {
     return (
       <div id="app">
         <Boards />
-        <div id="update-task-modal-container"></div>
-        <div id="add-board-modal-container"></div>
+        <div id="modal"></div>
       </div>
     );
   }

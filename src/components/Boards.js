@@ -20,20 +20,20 @@ class Boards extends Component {
     });
   };
 
-  createmodal = (board) => {
+  createModal = () => {
     ReactDOM.render(
-      <AddBoardModal getBoards={this.getBoards} removeModal={this.removeModal}/>,
-      document.getElementById("add-board-modal-container")
+      <AddBoardModal removeModal={this.removeModal} />,
+      document.getElementById("modal")
     );
-  }
+  };
 
   removeModal = () => {
     ReactDOM.unmountComponentAtNode(
-      document.getElementById("add-board-modal-container"),
+      document.getElementById("modal"),
       document.getElementById("add-board-modal")
     );
-    this.getBoards()
-  }
+    this.getBoards();
+  };
 
   render() {
     return (
@@ -44,10 +44,9 @@ class Boards extends Component {
             <Tasks boardId={board.id} />
           </div>
         ))}
-        <button
-          className="board add-board-btn"
-          onClick={this.createmodal}
-        >+ Board</button>
+        <button className="board add-board-btn" onClick={this.createModal}>
+          +Board
+        </button>
       </div>
     );
   }

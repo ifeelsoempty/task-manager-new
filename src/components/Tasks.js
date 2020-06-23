@@ -24,20 +24,17 @@ class Tasks extends Component {
 
   createModal = (task) => {
     ReactDOM.render(
-      <UpdateTaskModal
-        task={task}
-        removeModal={this.removeModal}
-        getTasks={this.getTasks}
-      />,
-      document.getElementById("update-task-modal-container")
+      <UpdateTaskModal task={task} removeModal={this.removeModal} />,
+      document.getElementById("modal")
     );
   };
 
   removeModal = (e) => {
     ReactDOM.unmountComponentAtNode(
-      document.getElementById("update-task-modal-container"),
+      document.getElementById("modal"),
       document.getElementById("update-task-modal")[0]
     );
+    this.getTasks();
   };
 
   render() {

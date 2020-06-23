@@ -12,9 +12,6 @@ class UpdateModal extends Component {
     )[0];
     UpdateTaskInputDOM.select();
   }
-  componentWillUnmount() {
-    this.props.getTasks();
-  }
 
   updateTask = () => {
     const updatedTask = this.props.task;

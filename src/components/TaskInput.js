@@ -8,7 +8,7 @@ class TaskInput extends Component {
     },
   };
 
-  addValueToState = (event) => {
+  addDescriptionToState = (event) => {
     this.setState({
       taskData: {
         description: event.target.value,
@@ -37,7 +37,7 @@ class TaskInput extends Component {
     return (
       <div className="task-input">
         <input
-          onChange={this.addValueToState}
+          onChange={this.addDescriptionToState}
           className="input"
           value={this.state.taskData.description}
         />

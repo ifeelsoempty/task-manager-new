@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 class AddBoardModal extends Component {
   state = {
-    newBoardName: ''
-  }
+    boardName: "",
+  };
 
   componentDidMount() {
     const addBoardInputDOM = document.getElementsByClassName(
@@ -12,22 +12,23 @@ class AddBoardModal extends Component {
     addBoardInputDOM.focus();
   }
 
-  addBoard = () => {
-    const newBoard = {
-      name: this.state.newBoardName
+  submitBoard = () => {
+    const board = { name: this.state.boardName };
+
+    if (this.state.boardName.trim() !== "") {
+      fetch("http://app-react/api/boards/create", {
+        method: "POST",
+        body: JSON.stringify(board),
+      }).then(this.props.removeModal);
     }
-    fetch("http://app-react/api/boards/create", {
-      method: "POST",
-      body: JSON.stringify(newBoard),
-    }).then(this.props.removeModal);
-  }
+  };
 
   render() {
-    const { getBoards, removeModal } = this.props;
-    const addBoardButtonDOM = document.getElementsByClassName(
+    const { removeModal } = this.props;
+    const addBoardBtnDOM = document.getElementsByClassName(
       "add-board-btn"
     )[0];
-    const btnCoordinates = addBoardButtonDOM.getBoundingClientRect();
+    const btnCoordinates = addBoardBtnDOM.getBoundingClientRect();
     return (
       <div
         onMouseDown={(e) =>
@@ -45,7 +46,7 @@ class AddBoardModal extends Component {
             width: `${btnCoordinates.width - 10}px`,
             height: `${btnCoordinates.height - 10}px`,
           }}
-          onChange={(e) => this.setState({newBoardName: e.target.value})}
+          onChange={(e) => this.setState({ boardName: e.target.value })}
         ></textarea>
         <button
           className="accept-board-btn accept-btn"
@@ -54,7 +55,7 @@ class AddBoardModal extends Component {
             top: `${btnCoordinates.y + 55}px`,
             width: `${btnCoordinates.width}px`,
           }}
-          onMouseDown={this.addBoard}
+          onClick={this.submitBoard}
         >
           Add board
         </button>
