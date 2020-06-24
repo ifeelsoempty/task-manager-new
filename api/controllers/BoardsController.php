@@ -45,4 +45,14 @@
             echo json_encode($updated);
             return true;
         }
+
+        public function DeleteBoard(){
+            $json_str = file_get_contents('php://input');
+            $board = json_decode($json_str);
+
+            $deleted = BoardsService::deleteBoard($board);
+
+            echo json_encode($deleted);
+            return true;
+        }
     }

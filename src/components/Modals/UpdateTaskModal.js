@@ -33,6 +33,7 @@ class UpdateModal extends Component {
         onMouseDown={(e) =>
           e.target.className === "modal" ? removeModal() : false
         }
+        styles={{backgroundColor: "rgb(0,0,0, 0.5)"}}
       >
         <textarea
           onChange={(e) => this.setState({ updatedValue: e.target.value })}

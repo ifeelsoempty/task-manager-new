@@ -16,8 +16,8 @@ class BoardModal extends Component {
     createBoardInputDOM.select();
   }
 
-  componentWillUnmount(){
-    this.props.element.style.color = "#ffffff"
+  componentWillUnmount() {
+    this.props.element.style.color = "#ffffff";
   }
 
   submitBoard = (operation) => {
@@ -25,6 +25,17 @@ class BoardModal extends Component {
 
     if (this.state.boardName.trim() !== "") {
       fetch(`http://app-react/api/boards/${operation}`, {
+        method: "POST",
+        body: JSON.stringify(board),
+      }).then(this.props.removeModal);
+    }
+  };
+
+  deleteBoard = (operation) => {
+    const board = { id: this.props.boardId, name: this.state.boardName };
+
+    if (this.state.boardName.trim() !== "") {
+      fetch(`http://app-react/api/boards/delete`, {
         method: "POST",
         body: JSON.stringify(board),
       }).then(this.props.removeModal);
@@ -60,17 +71,17 @@ class BoardModal extends Component {
           }}
           onChange={(e) => {
             this.setState({ boardName: e.target.value });
-            if(element.className === "top update-board-btn"){
-              element.innerText = e.target.value
-            };
+            if (element.className === "top update-board-btn") {
+              element.innerText = e.target.value;
+            }
           }}
         ></textarea>
-        {element.className === "board create-board-btn" ? (
+        {element.className === "top create-board-btn" ? (
           <button
-            className="accept-board-btn accept-btn"
+            className="accept-board-btn"
             style={{
               left: `${elCoordinates.x}px`,
-              top: `${elCoordinates.y + elCoordinates.height + 3}px`,
+              top: `${elCoordinates.y + elCoordinates.height}px`,
               width: `${elCoordinates.width}px`,
             }}
             onClick={() => this.submitBoard("create")}
@@ -78,7 +89,17 @@ class BoardModal extends Component {
             Create
           </button>
         ) : (
-          false
+          <button
+            className="delete-board-btn"
+            style={{
+              left: `${elCoordinates.x}px`,
+              top: `${elCoordinates.y + elCoordinates.height}px`,
+              width: `${elCoordinates.width}px`,
+            }}
+            onClick={() => this.deleteBoard("delete")}
+          >
+            Delete
+          </button>
         )}
       </div>
     );

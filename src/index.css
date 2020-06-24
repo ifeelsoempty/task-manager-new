@@ -70,16 +70,19 @@ code {
 }
 
 .create-board-btn {
+  margin-left: 25px;
+  max-width: 350px;
+  height: 100%;
   display: flex;
   color: #ffffff;
   font-size: 28px;
   font-family: "RobotoThin";
-  background: var(--text);
   font-weight: 500;
   padding: 5px 10px;
 }
+
 .create-board-btn:hover {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .top {
@@ -162,6 +165,7 @@ code {
   font-size: 28px;
   font-weight: 500;
   padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .task {
@@ -292,15 +296,28 @@ code {
 }
 
 .accept-board-btn{
-  height: 35px;
+  height: 45px;
   position: relative;
   color: #ffffff;
   box-shadow: 3px 3px 7px #00000025;
-  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
   background-color: rgb(111, 192, 88);
 }
 
 .accept-board-btn:hover {
   background-color: rgb(111, 179, 92);
   box-shadow: 5px 5px 10px #00000025;
+}
+
+.delete-board-btn{
+  height: 45px;
+  position: relative;
+  color: #ffffff;
+  background-color: rgb(255, 113, 113);
+  box-shadow: 3px 3px 7px #00000025;
+  border-radius: 0 0 5px 5px;
+}
+
+.delete-board-btn:hover{
+  background-color: rgb(255, 92, 92);
 }

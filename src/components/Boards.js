@@ -51,7 +51,7 @@ class Boards extends Component {
           </div>
         ))}
         <button
-          className="board create-board-btn"
+          className="top create-board-btn"
           onClick={(e) => this.createModal(e)}
         >
           +Board
