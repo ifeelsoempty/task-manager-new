@@ -18,9 +18,8 @@ class Tasks extends Component {
       (res) => {
         const tasks = res.data;
         this.setState({ tasks });
-      }
-    );
-  };
+      }).catch(() => this.setState({ tasks: []}))
+    }
 
   createModal = (task) => {
     ReactDOM.render(

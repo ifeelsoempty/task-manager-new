@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Tasks from "./Tasks";
-import AddBoardModal from "./Modals/AddBoardModal";
+import BoardModal from "./Modals/BoardModal";
 import Axios from "axios";
 
 class Boards extends Component {
@@ -14,37 +14,46 @@ class Boards extends Component {
   }
 
   getBoards = () => {
-    Axios.post("http://app-react/api/boards/list").then((res) => {
-      const boards = res.data;
-      this.setState({ boards });
-    });
-  };
-
-  createModal = () => {
-    ReactDOM.render(
-      <AddBoardModal removeModal={this.removeModal} />,
-      document.getElementById("modal")
-    );
+    Axios.post("http://app-react/api/boards/list")
+      .then((res) => {
+        const boards = res.data;
+        this.setState({ boards });
+      })
   };
 
   removeModal = () => {
     ReactDOM.unmountComponentAtNode(
       document.getElementById("modal"),
-      document.getElementById("add-board-modal")
+      document.getElementById("board-modal")
     );
     this.getBoards();
-  };
+  }
+
+  createModal(e, boardId) {
+    ReactDOM.render(
+      <BoardModal element={e.target} removeModal={this.removeModal} boardId={boardId} />,
+      document.getElementById("modal")
+    );
+  }
 
   render() {
     return (
       <div className="boards">
         {this.state.boards.map((board) => (
           <div className="board" key={board.id}>
-            <h1 className="top">{board.name}</h1>
+            <div
+              className="top update-board-btn"
+              onClick={(e) => this.createModal(e, board.id)}
+            >
+              {board.name}
+            </div>
             <Tasks boardId={board.id} />
           </div>
         ))}
-        <button className="board add-board-btn" onClick={this.createModal}>
+        <button
+          className="board create-board-btn"
+          onClick={(e) => this.createModal(e)}
+        >
           +Board
         </button>
       </div>

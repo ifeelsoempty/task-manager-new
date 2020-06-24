@@ -48,12 +48,8 @@ code {
     monospace;
 }
 
-* {
-  transition: 0.3s all;
-}
-
 :root {
-  --text: rgba(57, 106, 185, 0.644);
+  --text: #396ab9a4;
 }
 
 .boards {
@@ -68,31 +64,32 @@ code {
   height: 100%;
   min-width: 350px;
   max-width: 350px;
-  border-radius: 7px;
+  border-radius: 5px;
   box-shadow: 10px 10px 10px #0000001e;
   overflow: hidden;
 }
 
-.add-board-btn {
+.create-board-btn {
   display: flex;
   color: #ffffff;
   font-size: 28px;
   font-family: "RobotoThin";
   background: var(--text);
-  opacity: 0.3;
   font-weight: 500;
   padding: 5px 10px;
 }
-.add-board-btn:hover {
+.create-board-btn:hover {
   opacity: 0.6;
 }
 
 .top {
-  margin: 0;
+  cursor: pointer;
+  width: 100%;
+  min-height: 52px;
   font-family: "RobotoThin";
   background: var(--text);
   color: #ffffff;
-  padding: 10px;
+  padding: 5px 10px;
   font-size: 28px;
   font-weight: 500;
   border-radius: 5px 5px 0 0;
@@ -120,7 +117,7 @@ code {
   outline: 0 !important;
 }
 .task-input input:focus {
-  box-shadow: 0 0 10px inset #001f8560;
+  box-shadow: 0 0 5px inset #001f8560;
 }
 
 .task-input button {
@@ -155,16 +152,16 @@ code {
   border-radius: 3px;
 }
 
-.add-board-input {
+.board-input {
+  color: #ffffff;
+  overflow: hidden;
+  background: transparent;
   position: absolute;
   margin: 0;
   font-family: "RobotoThin";
-  font-size: 25px;
+  font-size: 28px;
   font-weight: 500;
-  border-radius: 5px 5px 0 0;
-  box-shadow: 0 0 3px inset var(--text);
-  border-radius: 5px;
-  border: 15px solid var(--text);
+  padding: 5px 10px;
 }
 
 .task {
@@ -298,11 +295,12 @@ code {
   height: 35px;
   position: relative;
   color: #ffffff;
-  border-radius: 5px;
   box-shadow: 3px 3px 7px #00000025;
-  background-color: rgba(91, 172, 68, 0.575);
+  border-radius: 5px;
+  background-color: rgb(111, 192, 88);
 }
 
 .accept-board-btn:hover {
-  background-color: rgba(78, 145, 60, 0.534);
+  background-color: rgb(111, 179, 92);
+  box-shadow: 5px 5px 10px #00000025;
 }

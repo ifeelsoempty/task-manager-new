@@ -43,7 +43,15 @@ class BoardsService
     {
         $db = Db::getConnection();
 
-        $board = $db->query("INSERT INTO `boards`(`id`, `name`) VALUES (NULL, '" . $board->name . "');");
+        $board = $db->query("INSERT INTO boards (`id`, `name`) VALUES (NULL, '" . $board->name . "');");
+
+        return $board;
+    }
+
+    public static function updateBoard($board){
+        $db = Db::getConnection();
+        printf($board->name);
+        $board = $db->query("UPDATE boards SET name = '". $board->name ."' WHERE id = ".$board->id." ");
 
         return $board;
     }

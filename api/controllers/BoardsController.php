@@ -35,4 +35,14 @@
             echo json_encode($created);
             return true;
         }
+
+        public function UpdateBoard(){
+            $json_str = file_get_contents('php://input');
+            $board = json_decode($json_str);
+
+            $updated = BoardsService::updateBoard($board);
+
+            echo json_encode($updated);
+            return true;
+        }
     }

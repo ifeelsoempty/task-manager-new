@@ -16,7 +16,6 @@ class UpdateModal extends Component {
   updateTask = () => {
     const updatedTask = this.props.task;
     updatedTask.description = this.state.updatedValue;
-    console.log(updatedTask);
     fetch("http://app-react/api/task/update", {
       method: "POST",
       body: JSON.stringify(updatedTask),
@@ -38,6 +37,7 @@ class UpdateModal extends Component {
         <textarea
           onChange={(e) => this.setState({ updatedValue: e.target.value })}
           className="update-task-input"
+          defaultValue={task.description}
           style={{
             width: `${(taskCoordinates.width / 100) * 86}px`,
             height: `${taskCoordinates.height}px`,
@@ -45,7 +45,6 @@ class UpdateModal extends Component {
             left: `${taskCoordinates.x}px`,
           }}
         >
-          {task.description}
         </textarea>
         <button
           style={{
