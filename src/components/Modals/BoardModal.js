@@ -68,7 +68,7 @@ class BoardModal extends Component {
             }
           }}
         ></textarea>
-        {boardDOM.classList.contains("top create-board-btn") ? (
+        {boardDOM.classList.contains("create-board-btn") ? (
           <button
             className="accept-board-btn"
             style={{
