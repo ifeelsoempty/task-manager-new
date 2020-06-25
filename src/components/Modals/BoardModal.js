@@ -3,10 +3,9 @@ import ReactDOM from "react-dom";
 
 class BoardModal extends Component {
   state = {
-    boardName:
-      this.props.boardDOM.classList.contains("update-board-btn")
-        ? this.props.boardDOM.innerText
-        : "",
+    boardName: this.props.boardDOM.classList.contains("update-board-btn")
+      ? this.props.boardDOM.innerText
+      : "",
   };
 
   componentDidMount() {
@@ -61,6 +60,13 @@ class BoardModal extends Component {
             width: `${boardCoordinates.width}px`,
             height: `${boardCoordinates.height}px`,
           }}
+          onKeyDown={(e) =>
+            e.keyCode === 13
+              ? boardDOM.classList.contains("update-board-btn")
+                ? this.submitBoard("update")
+                : this.submitBoard("create")
+              : false
+          }
           onChange={(e) => {
             this.setState({ boardName: e.target.value });
             if (boardDOM.classList.contains("update-board-btn")) {

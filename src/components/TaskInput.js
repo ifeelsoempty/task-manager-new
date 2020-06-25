@@ -37,13 +37,12 @@ class TaskInput extends Component {
     return (
       <div className="task-input">
         <input
+          onKeyDown={(e) => (e.keyCode === 13 ? this.submitTask() : false)}
           onChange={this.addDescriptionToState}
           className="input"
           value={this.state.taskData.description}
         />
-        <button onClick={this.submitTask}>
-          Add
-        </button>
+        <button onClick={this.submitTask}>Add</button>
       </div>
     );
   }

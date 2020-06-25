@@ -38,6 +38,7 @@ class UpdateModal extends Component {
         }
       >
         <textarea
+          onKeyDown={(e) => (e.keyCode === 13 ? this.updateTask() : false)}
           onChange={(e) => this.setState({ description: e.target.value })}
           className="update-task-input"
           value={this.state.description}

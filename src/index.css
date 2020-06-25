@@ -29,10 +29,6 @@ textarea:focus {
   outline: 0 !important;
 }
 
-* {
-  transition: 0.3s;
-}
-
 @font-face {
   font-family: "RobotoThin";
   src: url("./fonts/Roboto/Roboto-Thin.ttf") format("truetype");
@@ -53,7 +49,7 @@ code {
 }
 
 :root {
-  --text: #396ab9a4;
+  --text: #6c8ec3;
 }
 
 .boards {
@@ -90,6 +86,7 @@ code {
 }
 
 .top {
+  max-height: 94px;
   cursor: pointer;
   width: 100%;
   min-height: 52px;
@@ -135,6 +132,7 @@ code {
   margin-left: 10px;
 }
 
+
 .task-input button:active,
 .task-input button:focus {
   outline: none !important;
@@ -145,16 +143,15 @@ code {
 }
 
 .task-input button:hover {
-  box-shadow: 3px 3px 3px inset var(--text);
+  box-shadow: 3px 3px 3px inset #001f8560;
 }
 .task-input button:active {
   box-shadow: 7px 7px 7px inset var(--text);
 }
 
 .update-task-input {
+  min-height: 64px;
   position: relative;
-  overflow: hidden;
-  z-index: 1;
   padding: 8px 10px;
   border-radius: 3px;
 }
@@ -266,7 +263,7 @@ code {
 
 .update-btns {
   display: block;
-  position: relative;
+  position: absolute;
   color: #ffffff;
   width: 40px;
   height: 40px;
@@ -280,6 +277,7 @@ code {
 
 .update-btn {
   background-color: rgb(90, 172, 68);
+  position: relative;
 }
 .update-btn:hover {
   background-color: rgb(79, 145, 60);
