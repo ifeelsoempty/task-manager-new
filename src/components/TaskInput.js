@@ -41,7 +41,7 @@ class TaskInput extends Component {
           className="input"
           value={this.state.taskData.description}
         />
-        <button onClick={this.submitTask} className="button">
+        <button onClick={this.submitTask}>
           Add
         </button>
       </div>

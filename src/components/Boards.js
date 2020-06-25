@@ -14,11 +14,10 @@ class Boards extends Component {
   }
 
   getBoards = () => {
-    Axios.post("http://app-react/api/boards/list")
-      .then((res) => {
-        const boards = res.data;
-        this.setState({ boards });
-      })
+    Axios.post("http://app-react/api/boards/list").then((res) => {
+      const boards = res.data;
+      this.setState({ boards });
+    });
   };
 
   removeModal = () => {
@@ -27,11 +26,15 @@ class Boards extends Component {
       document.getElementById("board-modal")
     );
     this.getBoards();
-  }
+  };
 
   createModal(e, boardId) {
     ReactDOM.render(
-      <BoardModal element={e.target} removeModal={this.removeModal} boardId={boardId} />,
+      <BoardModal
+        boardId={boardId}
+        boardDOM={e.target}
+        removeModal={this.removeModal}
+      />,
       document.getElementById("modal")
     );
   }

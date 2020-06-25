@@ -14,16 +14,21 @@ class Tasks extends Component {
   }
 
   getTasks = () => {
-    Axios.post(`http://app-react/api/boards/${this.props.boardId}/tasks`).then(
-      (res) => {
+    Axios.post(`http://app-react/api/boards/${this.props.boardId}/tasks`)
+      .then((res) => {
         const tasks = res.data;
         this.setState({ tasks });
-      }).catch(() => this.setState({ tasks: []}))
-    }
+      })
+      .catch(() => this.setState({ tasks: [] }));
+  };
 
   createModal = (task) => {
     ReactDOM.render(
-      <UpdateTaskModal task={task} removeModal={this.removeModal} />,
+      <UpdateTaskModal
+        task={task}
+        taskDOM={document.getElementById(`${task.id}`)}
+        removeModal={this.removeModal}
+      />,
       document.getElementById("modal")
     );
   };

@@ -29,6 +29,10 @@ textarea:focus {
   outline: 0 !important;
 }
 
+* {
+  transition: 0.3s;
+}
+
 @font-face {
   font-family: "RobotoThin";
   src: url("./fonts/Roboto/Roboto-Thin.ttf") format("truetype");
@@ -102,7 +106,7 @@ code {
   background-color: var(--text);
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  padding: 3px;
 }
 
 .task-input * {
@@ -296,7 +300,7 @@ code {
 }
 
 .accept-board-btn{
-  height: 45px;
+  height: 38px;
   position: relative;
   color: #ffffff;
   box-shadow: 3px 3px 7px #00000025;
@@ -310,7 +314,7 @@ code {
 }
 
 .delete-board-btn{
-  height: 45px;
+  height: 38px;
   position: relative;
   color: #ffffff;
   background-color: rgb(255, 113, 113);
