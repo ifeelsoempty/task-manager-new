@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: "RobotoRegular", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0000001b;
+}
+
+@font-face {
+  font-family: "RobotoThin";
+  src: url("./fonts/Roboto/Roboto-Thin.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+:root {
+  --main-color: #6c8ec3;
+  --extra-dark-color: #3e5ca0;
+  --extra-light-color: #cad3e2;
+  --shadow-color: #00000044;
+}
+
+button {
+  border: 0;
+  outline: none;
+}
+button:active,
+button:focus {
+  outline: none !important;
+}
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+
+textarea{
+  border: 0 !important;
+  resize: none;
+}
+textarea:focus {
+  outline: 0 !important;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #000000a8;
+}
+
+.line-through {
+  text-decoration-line: line-through;
+}

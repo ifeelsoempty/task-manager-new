@@ -2,6 +2,8 @@ import React from "react";
 import { render } from "react-dom";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.css";
-import "./index.css";
+import "./styles/main.css";
+import "./styles/boards.css";
+import "./styles/tasks.css";
 
 render(<App />, document.getElementById("root"));

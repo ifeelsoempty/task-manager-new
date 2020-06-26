@@ -55,7 +55,7 @@ class Tasks extends Component {
               <div
                 className={
                   task.done === "1"
-                    ? "task-description task-done-line"
+                    ? "task-description line-through"
                     : "task-description"
                 }
               >
