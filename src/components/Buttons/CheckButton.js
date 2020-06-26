@@ -20,7 +20,7 @@ const CheckButton = ({ removeModal, task, taskCoordinates }) => {
         left: `${taskCoordinates.x + (taskCoordinates.width / 100) * 89 - 5}px`,
         top: `${taskCoordinates.y}px`,
       }}
-      className="update-btns check-btn"
+      className="edit-btns check-btn"
       onClick={checkTask}
     >
       {task.done === '0' ? '✓' : '↑'}

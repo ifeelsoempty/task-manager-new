@@ -17,7 +17,7 @@
   width: 85%;
 }
 
-.task-input {
+.create-task {
   display: flex;
   background-color: var(--main-color);
   padding: 3px;
@@ -25,11 +25,11 @@
   border-radius: 0 0 5px 5px;
 }
 
-.task-input * {
+.create-task * {
   border-radius: 0 0 5px 5px;
 }
 
-.task-input input {
+.create-task input {
   width: 100%;
   height: 31px;
   border: none;
@@ -38,26 +38,26 @@
   color: var(--main-color);
   outline: 0 !important;
 }
-.task-input input:focus {
+.create-task input:focus {
   box-shadow: 0 0 3px inset var(--extra-dark-color);
 }
 
-.task-input button {
+.create-task button {
   background-color: transparent;
   border: none;
   color: #ffffff;
   margin-left: 3px;
 }
 
-.task-input button:hover {
+.create-task button:hover {
   box-shadow: 3px 3px 3px inset var(--extra-dark-color);
 }
 
-.task-input button:active {
+.create-task button:active {
   box-shadow: 5px 5px 5px inset var(--extra-dark-color);
 }
 
-.update-task-input {
+.edit-task-input {
   min-height: 64px;
   position: relative;
   padding: 8px 10px;
@@ -103,7 +103,7 @@
   height: 20px;
 }
 
-.update-btns {
+.edit-btns {
   display: block;
   position: absolute;
   color: #ffffff;
@@ -113,15 +113,15 @@
   box-shadow: 3px 3px 3px var(--shadow-color);
 }
 
-.update-btns:hover {
+.edit-btns:hover {
   box-shadow: 5px 5px 5px var(--shadow-color);
 }
 
-.update-btn {
+.accept-task-btn {
   background-color: rgb(90, 172, 68);
   position: relative;
 }
-.update-btn:hover {
+.accept-task-btn:hover {
   background-color: rgb(79, 145, 60);
 }
 

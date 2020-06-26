@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import TaskInput from "./TaskInput";
-import UpdateTaskModal from "./Modals/UpdateTaskModal";
+import CreateTask from "./CreateTask";
+import TaskModal from "./Modals/TaskModal";
 import Axios from "axios";
 
 class Tasks extends Component {
@@ -24,7 +24,7 @@ class Tasks extends Component {
 
   createModal = (task) => {
     ReactDOM.render(
-      <UpdateTaskModal
+      <TaskModal
         task={task}
         taskDOM={document.getElementById(`${task.id}`)}
         removeModal={this.removeModal}
@@ -36,7 +36,7 @@ class Tasks extends Component {
   removeModal = (e) => {
     ReactDOM.unmountComponentAtNode(
       document.getElementById("modal"),
-      document.getElementById("update-task-modal")[0]
+      document.getElementById("task-modal")[0]
     );
     this.getTasks();
   };
@@ -73,7 +73,7 @@ class Tasks extends Component {
             </div>
           );
         })}
-        <TaskInput getTasks={this.getTasks} boardId={boardId} />
+        <CreateTask getTasks={this.getTasks} boardId={boardId} />
       </div>
     );
   }

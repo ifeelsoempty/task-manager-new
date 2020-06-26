@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class TaskInput extends Component {
+class CreateTask extends Component {
   state = {
     taskData: {
       description: "",
@@ -35,11 +35,10 @@ class TaskInput extends Component {
 
   render() {
     return (
-      <div className="task-input">
+      <div className="create-task">
         <input
           onKeyDown={(e) => (e.keyCode === 13 ? this.submitTask() : false)}
           onChange={this.addDescriptionToState}
-          className="input"
           value={this.state.taskData.description}
         />
         <button onClick={this.submitTask}>Add</button>
@@ -48,4 +47,4 @@ class TaskInput extends Component {
   }
 }
 
-export default TaskInput;
+export default CreateTask;

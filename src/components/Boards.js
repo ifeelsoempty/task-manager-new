@@ -45,7 +45,7 @@ class Boards extends Component {
         {this.state.boards.map((board) => (
           <div className="board" key={board.id}>
             <div
-              className="board-top update-board-btn"
+              className="board-top edit-board-btn"
               onClick={(e) => this.createModal(e, board.id)}
             >
               {board.name}

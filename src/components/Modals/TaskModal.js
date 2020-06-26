@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import DeleteButton from "../Buttons/DeleteButton";
 import CheckButton from "../Buttons/CheckButton";
 
-class UpdateModal extends Component {
+class TaskModal extends Component {
   state = {
     description: this.props.taskDOM.innerText,
   };
 
   componentDidMount() {
-    const UpdateTaskInputDOM = document.getElementsByClassName(
-      "update-task-input"
+    const editTaskInputDOM = document.getElementsByClassName(
+      "edit-task-input"
     )[0];
-    UpdateTaskInputDOM.select();
+    editTaskInputDOM.select();
   }
 
   updateTask = () => {
@@ -31,7 +31,7 @@ class UpdateModal extends Component {
     const taskCoordinates = taskDOM.getBoundingClientRect();
     return (
       <div
-        id="update-task-modal"
+        id="task-modal"
         className="modal"
         onMouseDown={(e) =>
           e.target.classList.contains("modal") ? removeModal() : false
@@ -40,7 +40,7 @@ class UpdateModal extends Component {
         <textarea
           onKeyDown={(e) => (e.keyCode === 13 ? this.updateTask() : false)}
           onChange={(e) => this.setState({ description: e.target.value })}
-          className="update-task-input"
+          className="edit-task-input"
           value={this.state.description}
           style={{
             width: `${(taskCoordinates.width / 100) * 86}px`,
@@ -55,7 +55,7 @@ class UpdateModal extends Component {
             width: `${(taskCoordinates.width / 100) * 86}px`,
             top: `${taskCoordinates.y}px`,
           }}
-          className="update-btns update-btn"
+          className="edit-btns accept-task-btn"
           onClick={this.updateTask}
         >
           Save
@@ -75,4 +75,4 @@ class UpdateModal extends Component {
   }
 }
 
-export default UpdateModal;
+export default TaskModal;

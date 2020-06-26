@@ -14,7 +14,7 @@ const DeleteButton = ({ removeModal, task, taskCoordinates }) => {
         left: `${taskCoordinates.x + (taskCoordinates.width / 100) * 89 - 5}px`,
         top: `${taskCoordinates.y + 46}px`,
       }}
-      className="update-btns delete-btn"
+      className="edit-btns delete-btn"
       onClick={deleteTask}
     >
       ✗
