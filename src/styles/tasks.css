@@ -3,6 +3,11 @@
   position: relative;
   padding: 8px 10px;
   cursor: pointer;
+  user-select: none;
+}
+
+.task *{
+  pointer-events: none;
 }
 
 .task:hover {
@@ -74,6 +79,7 @@
 .task-btn {
   display: none;
   position: absolute;
+  pointer-events: auto;
   background-color: transparent;
   width: 30px;
   height: 30px;

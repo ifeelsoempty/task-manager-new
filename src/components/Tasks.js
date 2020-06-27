@@ -41,13 +41,55 @@ class Tasks extends Component {
     this.getTasks();
   };
 
+  onMouseDown = (e, task) => {
+    const taskDOM = e.target;
+    taskDOM.style.position = "relative";
+    taskDOM.style.zIndex = "999";
+    const taskCoordinates = taskDOM.getBoundingClientRect();
+
+    const onMouseMove = (e) => {
+      taskDOM.style.top =
+        e.clientY - taskCoordinates.y - taskDOM.offsetHeight / 2 + "px";
+      taskDOM.style.left =
+        e.clientX - taskCoordinates.x - taskDOM.offsetWidth / 2 + "px";
+    };
+
+    document.addEventListener("mousemove", onMouseMove);
+
+    taskDOM.addEventListener("mouseup", (e) => {
+      taskDOM.hidden = true;
+      const elFromPoint = document.elementFromPoint(e.clientX, e.clientY);
+      taskDOM.style.position = "";
+      console.log(elFromPoint);
+
+      if (elFromPoint.classList.contains("task")) {
+        task.board_id = elFromPoint.parentElement.id;
+
+        fetch("http://app-react/api/task/changeBoard", {
+          method: "POST",
+          body: JSON.stringify(task),
+        }).then(this.getTasks());
+
+        elFromPoint.parentElement.appendChild(taskDOM);
+      }
+
+      taskDOM.hidden = false;
+      taskDOM.style.top = "";
+      taskDOM.style.left = "";
+      taskDOM.style.zIndex = "";
+      taskDOM.removeAttribute("style");
+      document.removeEventListener("mousemove", onMouseMove);
+    });
+  };
+
   render() {
     const { boardId } = this.props;
     return (
       <div>
-        {this.state.tasks.map((task) => {
-          return (
+        <div id={boardId}>
+          {this.state.tasks.map((task) => (
             <div
+              onMouseDown={(e) => this.onMouseDown(e, task)}
               id={task.id}
               key={task.id}
               className={task.done === "1" ? "task task-done" : "task"}
@@ -63,6 +105,7 @@ class Tasks extends Component {
               </div>
               <button
                 className="task-btn"
+                onMouseDown={(e) => e.stopPropagation()}
                 onClick={() => this.createModal(task)}
               >
                 <img
@@ -71,8 +114,8 @@ class Tasks extends Component {
                 />
               </button>
             </div>
-          );
-        })}
+          ))}
+        </div>
         <CreateTask getTasks={this.getTasks} boardId={boardId} />
       </div>
     );

@@ -7,8 +7,9 @@ import Axios from "axios";
 class Boards extends Component {
   state = {
     boards: [],
+    amount: 1
   };
-
+  
   componentDidMount() {
     this.getBoards();
   }

@@ -8,4 +8,5 @@
         'task/create' => 'Task/CreateTask',
         'task/update' => 'Task/UpdateTask',
         'task/delete' => 'Task/DeleteTask',
+        'task/changeBoard' => 'Task/ChangeBoardTask',
     );

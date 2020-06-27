@@ -44,6 +44,7 @@ button::-moz-focus-inner {
 textarea{
   border: 0 !important;
   resize: none;
+  overflow: hidden;
 }
 textarea:focus {
   outline: 0 !important;

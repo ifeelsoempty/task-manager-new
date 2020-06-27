@@ -17,14 +17,10 @@ class CreateTask extends Component {
     });
   };
 
-  submitTask = () => {
+  createTask = () => {
     if (this.state.taskData.description.trim() !== "") {
       fetch("http://app-react/api/task/create", {
         method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify(this.state.taskData),
       }).then(() => {
         this.props.getTasks();
@@ -37,11 +33,11 @@ class CreateTask extends Component {
     return (
       <div className="create-task">
         <input
-          onKeyDown={(e) => (e.keyCode === 13 ? this.submitTask() : false)}
+          onKeyDown={(e) => (e.keyCode === 13 ? this.createTask() : false)}
           onChange={this.addDescriptionToState}
           value={this.state.taskData.description}
         />
-        <button onClick={this.submitTask}>Add</button>
+        <button onClick={this.createTask}>Add</button>
       </div>
     );
   }
