@@ -1,27 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import CreateTask from "./CreateTask";
 import TaskModal from "./Modals/TaskModal";
-import Axios from "axios";
 
 class Tasks extends Component {
-  state = {
-    tasks: [],
-  };
-
-  componentDidMount() {
-    this.getTasks();
-  }
-
-  getTasks = () => {
-    Axios.post(`http://app-react/api/boards/${this.props.boardId}/tasks`)
-      .then((res) => {
-        const tasks = res.data;
-        this.setState({ tasks });
-      })
-      .catch(() => this.setState({ tasks: [] }));
-  };
-
   createModal = (task) => {
     ReactDOM.render(
       <TaskModal
@@ -38,7 +19,7 @@ class Tasks extends Component {
       document.getElementById("modal"),
       document.getElementById("task-modal")[0]
     );
-    this.getTasks();
+    this.props.getBoards();
   };
 
   onMouseDown = (e, task) => {
@@ -57,17 +38,14 @@ class Tasks extends Component {
 
     taskDOM.addEventListener("mouseup", (e) => {
       taskDOM.hidden = true;
-      const elFromPoint = document.elementFromPoint(e.clientX, e.clientY); 
-      //elFromPoint - Таска из доски на которую "приземляется" перемещаемая таска
+      const elFromPoint = document.elementFromPoint(e.clientX, e.clientY);
 
       if (elFromPoint.classList.contains("task")) {
-        task.board_id = elFromPoint.parentElement.id;//Сам запрос выполняется корректно и в базе данных все меняется
-
+        task.board_id = elFromPoint.parentElement.id;
         fetch("http://app-react/api/task/changeBoard", {
           method: "POST",
           body: JSON.stringify(task),
-        }).then()
-        //Не знаю как после этого запроса обновить ту доску на которую должна переместится таска
+        }).then(this.props.getBoards);
       }
 
       taskDOM.hidden = false;
@@ -80,40 +58,39 @@ class Tasks extends Component {
   };
 
   render() {
-    const { boardId } = this.props;
+    const { board } = this.props;
     return (
-      <div>
-        <div id={boardId}>
-          {this.state.tasks.map((task) => (
-            <div
-              onMouseDown={(e) => this.onMouseDown(e, task)}
-              id={`task-${task.id}`}
-              key={task.id}
-              className={task.done === "1" ? "task task-done" : "task"}
-            >
+      <div id={board.id}>
+        {board.tasks
+          ? board.tasks.map((task) => (
               <div
-                className={
-                  task.done === "1"
-                    ? "task-description line-through"
-                    : "task-description"
-                }
+                onMouseDown={(e) => this.onMouseDown(e, task)}
+                id={`task-${task.id}`}
+                key={task.id}
+                className={task.done === "1" ? "task task-done" : "task"}
               >
-                {task.description}
+                <div
+                  className={
+                    task.done === "1"
+                      ? "task-description line-through"
+                      : "task-description"
+                  }
+                >
+                  {task.description}
+                </div>
+                <button
+                  className="task-btn"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={() => this.createModal(task)}
+                >
+                  <img
+                    src="https://img.icons8.com/windows/20/000000/edit.png"
+                    className="task-btn-image"
+                  />
+                </button>
               </div>
-              <button
-                className="task-btn"
-                onMouseDown={(e) => e.stopPropagation()}
-                onClick={() => this.createModal(task)}
-              >
-                <img
-                  src="https://img.icons8.com/windows/20/000000/edit.png"
-                  className="task-btn-image"
-                />
-              </button>
-            </div>
-          ))}
-        </div>
-        <CreateTask getTasks={this.getTasks} boardId={boardId} />
+            ))
+          : false}
       </div>
     );
   }

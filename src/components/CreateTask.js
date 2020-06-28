@@ -23,7 +23,7 @@ class CreateTask extends Component {
         method: "POST",
         body: JSON.stringify(this.state.taskData),
       }).then(() => {
-        this.props.getTasks();
+        this.props.getBoards();
       });
       this.setState({ taskData: { description: "" } });
     }

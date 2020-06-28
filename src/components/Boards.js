@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Tasks from "./Tasks";
+import CreateTask from "./CreateTask";
 import BoardModal from "./Modals/BoardModal";
 import Axios from "axios";
 
@@ -8,19 +9,19 @@ class Boards extends Component {
   state = {
     boards: [],
   };
-  
+
   componentDidMount() {
     this.getBoards();
   }
 
   getBoards = () => {
-    Axios.post("http://app-react/api/boards/list").then((res) => {
+    Axios.post("http://app-react/api/boards/get").then((res) => {
       const boards = res.data;
       this.setState({ boards });
     });
   };
 
-  removeModal = () => {
+  removeBoardModal = () => {
     ReactDOM.unmountComponentAtNode(
       document.getElementById("modal"),
       document.getElementById("board-modal")
@@ -28,16 +29,16 @@ class Boards extends Component {
     this.getBoards();
   };
 
-  createModal(e, boardId) {
+  createBoardModal = (e, boardId) => {
     ReactDOM.render(
       <BoardModal
         boardId={boardId}
         boardDOM={e.target}
-        removeModal={this.removeModal}
+        removeBoardModal={this.removeBoardModal}
       />,
       document.getElementById("modal")
     );
-  }
+  };
 
   render() {
     return (
@@ -46,16 +47,17 @@ class Boards extends Component {
           <div className="board" key={board.id}>
             <div
               className="board-top edit-board-btn"
-              onClick={(e) => this.createModal(e, board.id)}
+              onClick={(e) => this.createBoardModal(e, board.id)}
             >
               {board.name}
             </div>
-            <Tasks getBoards={this.getBoards} boardId={board.id} />
+            <Tasks getBoards={this.getBoards} board={board} />
+            <CreateTask getBoards={this.getBoards} boardId={board.id} />
           </div>
         ))}
         <button
           className="board-top create-board-btn"
-          onClick={(e) => this.createModal(e)}
+          onClick={(e) => this.createBoardModal(e)}
         >
           +Board
         </button>

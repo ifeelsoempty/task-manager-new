@@ -28,12 +28,12 @@ class BoardModal extends Component {
       fetch(`http://app-react/api/boards/${operation}`, {
         method: "POST",
         body: JSON.stringify(board),
-      }).then(this.props.removeModal);
+      }).then(this.props.removeBoardModal);
     }
   };
 
   render() {
-    const { boardDOM, removeModal } = this.props;
+    const { boardDOM, removeBoardModal } = this.props;
     const boardCoordinates = boardDOM.getBoundingClientRect();
     boardDOM.style.color = "transparent";
     return (
@@ -42,7 +42,7 @@ class BoardModal extends Component {
           e.target.id === "board-modal"
             ? boardDOM.classList.contains("edit-board-btn")
               ? this.submitBoard("update")
-              : removeModal()
+              : removeBoardModal()
             : false
         }
         id="board-modal"

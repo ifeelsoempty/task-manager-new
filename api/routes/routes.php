@@ -1,7 +1,7 @@
 <?php
     return array(
-        'boards/([0-9]+)/tasks' => 'Boards/TasksByBoardId/$1', // BoardsController/TasksByBoardId/BoardId
-        'boards/list' => 'Boards/Boards',
+        'boards/([0-9]+)/tasks' => 'Boards/TasksByBoardId/$1',
+        'boards/get' => 'Boards/getBoards',
         'boards/create' => 'Boards/CreateBoard',
         'boards/update' => 'Boards/UpdateBoard',
         'boards/delete' => 'Boards/DeleteBoard',
