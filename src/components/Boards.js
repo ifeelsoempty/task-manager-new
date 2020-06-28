@@ -7,7 +7,6 @@ import Axios from "axios";
 class Boards extends Component {
   state = {
     boards: [],
-    amount: 1
   };
   
   componentDidMount() {
@@ -51,7 +50,7 @@ class Boards extends Component {
             >
               {board.name}
             </div>
-            <Tasks boardId={board.id} />
+            <Tasks getBoards={this.getBoards} boardId={board.id} />
           </div>
         ))}
         <button

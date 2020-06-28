@@ -26,7 +26,7 @@ class Tasks extends Component {
     ReactDOM.render(
       <TaskModal
         task={task}
-        taskDOM={document.getElementById(`${task.id}`)}
+        taskDOM={document.getElementById(`task-${task.id}`)}
         removeModal={this.removeModal}
       />,
       document.getElementById("modal")
@@ -43,7 +43,6 @@ class Tasks extends Component {
 
   onMouseDown = (e, task) => {
     const taskDOM = e.target;
-    taskDOM.style.position = "relative";
     taskDOM.style.zIndex = "999";
     const taskCoordinates = taskDOM.getBoundingClientRect();
 
@@ -58,19 +57,17 @@ class Tasks extends Component {
 
     taskDOM.addEventListener("mouseup", (e) => {
       taskDOM.hidden = true;
-      const elFromPoint = document.elementFromPoint(e.clientX, e.clientY);
-      taskDOM.style.position = "";
-      console.log(elFromPoint);
+      const elFromPoint = document.elementFromPoint(e.clientX, e.clientY); 
+      //elFromPoint - Таска из доски на которую "приземляется" перемещаемая таска
 
       if (elFromPoint.classList.contains("task")) {
-        task.board_id = elFromPoint.parentElement.id;
+        task.board_id = elFromPoint.parentElement.id;//Сам запрос выполняется корректно и в базе данных все меняется
 
         fetch("http://app-react/api/task/changeBoard", {
           method: "POST",
           body: JSON.stringify(task),
-        }).then(this.getTasks());
-
-        elFromPoint.parentElement.appendChild(taskDOM);
+        });
+        //Не знаю как после этого запроса обновить ту доску на которую должна переместится таска
       }
 
       taskDOM.hidden = false;
@@ -90,7 +87,7 @@ class Tasks extends Component {
           {this.state.tasks.map((task) => (
             <div
               onMouseDown={(e) => this.onMouseDown(e, task)}
-              id={task.id}
+              id={`task-${task.id}`}
               key={task.id}
               className={task.done === "1" ? "task task-done" : "task"}
             >
