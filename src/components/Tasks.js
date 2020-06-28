@@ -66,7 +66,7 @@ class Tasks extends Component {
         fetch("http://app-react/api/task/changeBoard", {
           method: "POST",
           body: JSON.stringify(task),
-        });
+        }).then()
         //Не знаю как после этого запроса обновить ту доску на которую должна переместится таска
       }
 
