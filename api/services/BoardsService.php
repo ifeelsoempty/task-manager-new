@@ -7,7 +7,7 @@ class BoardsService
     {
         $db = Db::getConnection();
 
-        $board = $db->query("INSERT INTO `boards` (`id`, `name`) VALUES (NULL, '" . $board->name . "');");
+        $board = $db->query("INSERT INTO `boards` (`id`, `name`) VALUES (" . $board->id. ", '" . $board->name . "');");
 
         return $board;
     }

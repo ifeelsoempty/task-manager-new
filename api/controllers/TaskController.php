@@ -26,12 +26,12 @@ class TaskController
         return true;
     }
 
-    public function ChangeBoardTask()
+    public function ChangeTaskBoard()
     {
         $json_str = file_get_contents('php://input');
         $task = json_decode($json_str);
 
-        $updated = TaskService::changeBoardTask($task);
+        $updated = TaskService::changeTaskBoard($task);
 
         echo json_encode($updated);
         return true;

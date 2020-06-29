@@ -21,14 +21,15 @@ class BoardModal extends Component {
   submitBoard = (operation) => {
     if (this.state.boardName.trim() !== "") {
       const board = {
-        id: this.props.boardId,
+        id: operation === "create"
+            ? String(+this.props.boards[this.props.boards.length - 1].id + 1)
+            : this.props.boardId,
         name: this.state.boardName,
       };
-
       fetch(`http://app-react/api/boards/${operation}`, {
         method: "POST",
         body: JSON.stringify(board),
-      }).then(this.props.removeBoardModal);
+      }).then(() => this.props.changeBoardState(operation, board));
     }
   };
 
@@ -51,7 +52,7 @@ class BoardModal extends Component {
       >
         <textarea
           className="board-input"
-          spellcheck="false"
+          spellCheck="false"
           value={this.state.boardName}
           style={{
             left: `${boardCoordinates.x}px`,

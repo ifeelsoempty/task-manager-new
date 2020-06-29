@@ -3,23 +3,18 @@ import ReactDOM from "react-dom";
 import TaskModal from "./Modals/TaskModal";
 
 class Tasks extends Component {
-  createModal = (task) => {
+  createTaskModal = (task) => {
     ReactDOM.render(
       <TaskModal
         task={task}
         taskDOM={document.getElementById(`task-${task.id}`)}
-        removeModal={this.removeModal}
+        deleteTaskFromState={this.props.deleteTaskFromState}
+        updateTaskInState={this.props.updateTaskInState}
+        checkTaskInState={this.props.checkTaskInState}
+        removeTaskModal={this.props.removeTaskModal}
       />,
       document.getElementById("modal")
     );
-  };
-
-  removeModal = (e) => {
-    ReactDOM.unmountComponentAtNode(
-      document.getElementById("modal"),
-      document.getElementById("task-modal")[0]
-    );
-    this.props.getBoards();
   };
 
   onMouseDown = (e, task) => {
@@ -38,14 +33,15 @@ class Tasks extends Component {
 
     taskDOM.addEventListener("mouseup", (e) => {
       taskDOM.hidden = true;
+      const oldBoard = task.board_id;
       const elFromPoint = document.elementFromPoint(e.clientX, e.clientY);
 
-      if (elFromPoint.classList.contains("task")) {
+      if (elFromPoint.classList.contains("task") && elFromPoint.parentElement.id !== oldBoard) {
         task.board_id = elFromPoint.parentElement.id;
         fetch("http://app-react/api/task/changeBoard", {
           method: "POST",
           body: JSON.stringify(task),
-        }).then(this.props.getBoards);
+        }).then(() => this.props.changeTaskBoardInState(task, oldBoard));
       }
 
       taskDOM.hidden = false;
@@ -81,9 +77,10 @@ class Tasks extends Component {
                 <button
                   className="task-btn"
                   onMouseDown={(e) => e.stopPropagation()}
-                  onClick={() => this.createModal(task)}
+                  onClick={() => this.createTaskModal(task)}
                 >
                   <img
+                    alt="Edit"
                     src="https://img.icons8.com/windows/20/000000/edit.png"
                     className="task-btn-image"
                   />

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CheckButton = ({ removeModal, task, taskCoordinates }) => {
+const CheckButton = ({ task, taskCoordinates, checkTaskInState }) => {
   function checkTask() {
     task.done === '1' ? task.done = '0': task.done = '1';
     console.log(task.done)
@@ -11,7 +11,7 @@ const CheckButton = ({ removeModal, task, taskCoordinates }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
-    }).then(removeModal);
+    }).then(() => checkTaskInState(task));
   }
 
   return (

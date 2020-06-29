@@ -7,7 +7,7 @@ class TaskService
     {
         $db = Db::getConnection();
 
-        $task = $db->query("INSERT INTO tasks (id, description, board_id, done) VALUES (NULL,'" . $task->description . "'," . $task->board_id . ",0)");
+        $task = $db->query("INSERT INTO tasks (id, description, board_id, done) VALUES (" . $task->id. ",'" . $task->description . "'," . $task->board_id . ",0)");
 
         return $task;
     }
@@ -20,7 +20,7 @@ class TaskService
 
         return $task;
     }
-    public static function changeBoardTask($task)
+    public static function changeTaskBoard($task)
     {
         $db = Db::getConnection();
         printf($task->done);

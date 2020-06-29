@@ -2,30 +2,38 @@ import React, { Component } from "react";
 
 class CreateTask extends Component {
   state = {
-    taskData: {
-      description: "",
-      board_id: this.props.boardId,
-    },
+    description: "",
   };
 
   addDescriptionToState = (event) => {
-    this.setState({
-      taskData: {
-        description: event.target.value,
-        board_id: this.props.boardId,
-      },
-    });
+    this.setState({ description: event.target.value });
   };
 
   createTask = () => {
-    if (this.state.taskData.description.trim() !== "") {
+    //Алгоритм поиска таски с наибольшем Id в массиве boards
+    if (this.state.description.trim() !== "") {
+      let taskId = 0;
+      this.props.boards.map((boardItem) => {
+        let maxId = 0;
+        if (boardItem.tasks)
+          boardItem.tasks.map((taskItem) =>
+            +taskItem.id > maxId ? (maxId = +taskItem.id) : false
+          );
+        if (maxId > taskId) taskId = maxId;
+      });
+
+      const task = {
+        id: String(taskId + 1),
+        description: this.state.description,
+        board_id: this.props.boardId,
+        done: "0",
+      };
+
       fetch("http://app-react/api/task/create", {
         method: "POST",
-        body: JSON.stringify(this.state.taskData),
-      }).then(() => {
-        this.props.getBoards();
-      });
-      this.setState({ taskData: { description: "" } });
+        body: JSON.stringify(task),
+      }).then(() => this.props.createTaskInState(task));
+      this.setState({ description: "" });
     }
   };
 
@@ -35,7 +43,7 @@ class CreateTask extends Component {
         <input
           onKeyDown={(e) => (e.keyCode === 13 ? this.createTask() : false)}
           onChange={this.addDescriptionToState}
-          value={this.state.taskData.description}
+          value={this.state.description}
         />
         <button onClick={this.createTask}>Add</button>
       </div>

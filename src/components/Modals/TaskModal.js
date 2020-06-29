@@ -16,25 +16,25 @@ class TaskModal extends Component {
 
   updateTask = () => {
     if (this.state.description.trim() !== "") {
-      const updatedTask = this.props.task;
-      updatedTask.description = this.state.description;
+      const task = this.props.task;
+      task.description = this.state.description;
 
       fetch("http://app-react/api/task/update", {
         method: "POST",
-        body: JSON.stringify(updatedTask),
-      }).then(this.props.removeModal);
+        body: JSON.stringify(task),
+      }).then(() => this.props.updateTaskInState(task));
     }
   };
 
   render() {
-    const { task, taskDOM, removeModal } = this.props;
+    const { task, taskDOM, removeTaskModal } = this.props;
     const taskCoordinates = taskDOM.getBoundingClientRect();
     return (
       <div
         id="task-modal"
         className="modal"
         onMouseDown={(e) =>
-          e.target.classList.contains("modal") ? removeModal() : false
+          e.target.classList.contains("modal") ? removeTaskModal() : false
         }
       >
         <textarea
@@ -61,14 +61,14 @@ class TaskModal extends Component {
           Save
         </button>
         <CheckButton
-          taskCoordinates={taskCoordinates}
-          removeModal={removeModal}
           task={task}
+          taskCoordinates={taskCoordinates}
+          checkTaskInState={this.props.checkTaskInState}
         />
         <DeleteButton
-          taskCoordinates={taskCoordinates}
-          removeModal={removeModal}
           task={task}
+          taskCoordinates={taskCoordinates}
+          deleteTaskFromState={this.props.deleteTaskFromState}
         />
       </div>
     );
