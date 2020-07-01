@@ -25,6 +25,7 @@ class BoardModal extends Component {
             ? String(+this.props.boards[this.props.boards.length - 1].id + 1)
             : this.props.boardId,
         name: this.state.boardName,
+        userId: this.props.userId
       };
       fetch(`http://app-react/api/boards/${operation}`, {
         method: "POST",

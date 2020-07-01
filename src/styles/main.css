@@ -233,3 +233,52 @@ textarea:focus {
 .task-check-btn:hover {
   background-color: #0058e7;
 }
+.login {
+  font-family: "RobotoRegular";
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #ffffff;
+  margin: 200px auto;
+  width: 400px;
+  padding: 15px;
+  height: 250px;
+  box-shadow: 1px 1px 5px #00000044;
+}
+.login * {
+  border-radius: 4px;
+}
+.login-error {
+  color: red;
+  width: 100%;
+}
+.login-lower-block {
+  display: flex;
+  justify-content: space-around;
+}
+.login title {
+  display: block;
+  align-self: start;
+}
+.login input {
+  padding: 5px;
+  font-size: 20px;
+  border: 2px solid rgba(128, 128, 128, 0.26666667);
+}
+.login input:focus {
+  border: 2px solid #5472a0;
+}
+.login button {
+  color: #ffffff;
+  background-color: #5472a0;
+  width: 100px;
+  height: 30px;
+  justify-self: flex-end;
+}
+.login button:hover {
+  background-color: #435a7f;
+}
+.login button:active {
+  background-color: #3a4e6e;
+}

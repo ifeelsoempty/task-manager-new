@@ -4,6 +4,19 @@ include_once ROOT . '/services/BoardsService.php';
 
 class BoardsController
 {
+    public function GetUserId()
+    {
+        $user = array(
+            "username" => $_GET['username'],
+            "password" => $_GET['password']
+        );
+
+        $userId = BoardsService::getUserId($user);
+
+        echo json_encode($userId);
+
+        return true;
+    }
 
     public function CreateBoard()
     {
@@ -15,6 +28,7 @@ class BoardsController
         echo json_encode($created);
         return true;
     }
+
     public function GetBoards()
     {
         $boards = array();

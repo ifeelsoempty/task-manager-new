@@ -11,7 +11,7 @@ class Boards extends Component {
   };
 
   componentDidMount() {
-    Axios.post("http://app-react/api/boards/get").then((res) => {
+    Axios.post(`http://app-react/api/boards/get?userId=${this.props.userId}`).then((res) => {
       const boards = res.data;
       this.setState({ boards });
     });
@@ -139,6 +139,7 @@ class Boards extends Component {
   createBoardModal = (e, boardId) => {
     ReactDOM.render(
       <BoardModal
+        userId={this.props.userId}
         changeBoardState={this.changeBoardState}
         boards={this.state.boards}
         boardId={boardId}

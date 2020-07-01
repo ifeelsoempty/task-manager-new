@@ -1,5 +1,6 @@
 <?php
     return array(
+        'userId/get' => 'Boards/getUserId',
         'boards/([0-9]+)/tasks' => 'Boards/TasksByBoardId/$1',
         'boards/get' => 'Boards/getBoards',
         'boards/create' => 'Boards/CreateBoard',

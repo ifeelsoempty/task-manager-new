@@ -2,12 +2,20 @@
 
 class BoardsService
 {
+    public static function getUserId($user)
+    {
+        $db = Db::getConnection();
+
+        $userId = $db->query('SELECT id FROM users WHERE username = "' . $user["username"] . '" AND password = "' . $user["password"] . '"')->fetch();
+
+        return $userId;
+    }
 
     public static function createBoard($board)
     {
         $db = Db::getConnection();
 
-        $board = $db->query("INSERT INTO `boards` (`id`, `name`) VALUES (" . $board->id. ", '" . $board->name . "');");
+        $board = $db->query("INSERT INTO `boards` (`id`, `name`, `user_id`) VALUES (" . $board->id . ", '" . $board->name . "', '" . $board->userId . "');");
 
         return $board;
     }
@@ -19,7 +27,7 @@ class BoardsService
         $boards = array();
 
         $result = $db->query('SELECT id, name '
-            . 'FROM  boards '
+            . 'FROM boards WHERE user_id = "' . $_GET['userId'] . '"'
             . 'LIMIT 10');
 
         $i = 0;
