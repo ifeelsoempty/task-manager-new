@@ -1,0 +1,83 @@
+// main: main.less
+
+.boards {
+  display: flex;
+  margin: 25px 0;
+}
+
+.board {
+  background: #ffffff;
+  height: 100%;
+  min-width: 350px;
+  max-width: 350px;
+  margin-left: 25px;
+  border-radius: @radius;
+  box-shadow: 0 0 10px @shadow-color;
+
+  &-top {
+    background: @main-color;
+    width: 100%;
+    max-height: 94px;
+    min-height: 52px;
+    padding: 5px 10px;
+    font-family: "RobotoThin";
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: 500;
+    border-radius: @radius @radius 0 0;
+  }
+
+  &-input {
+    position: absolute;
+    background: transparent;
+    color: #ffffff;
+    margin: 0;
+    font-family: "RobotoThin";
+    font-size: 28px;
+    font-weight: 500;
+    padding: 5px 10px;
+  }
+
+  &-create-btn {
+    display: flex;
+    max-width: 350px;
+    height: 100%;
+    margin-left: 25px;
+    padding: 5px 10px;
+    color: #ffffff;
+    font-family: "RobotoThin";
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  &-create-btn:hover {
+    opacity: 0.8;
+  }
+
+  &-edit-btns {
+    position: relative;
+    height: 38px;
+    color: #ffffff;
+    box-shadow: 0 0 3px @shadow-color;
+    border-radius: 0 0 @radius @radius;
+  }
+
+  &-accept-btn {
+    @accept-btn-color: rgb(111, 192, 88);
+    background-color: @accept-btn-color;
+
+    &:hover {
+      background-color: darken(@accept-btn-color, 5%);
+    }
+  }
+
+  &-delete-btn {
+    @delete-btn-color: rgb(255, 113, 113);
+    background-color: @delete-btn-color;
+
+    &:hover {
+      background-color: darken(@delete-btn-color, 5%);
+    }
+  }
+}

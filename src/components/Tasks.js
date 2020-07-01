@@ -36,7 +36,10 @@ class Tasks extends Component {
       const oldBoard = task.board_id;
       const elFromPoint = document.elementFromPoint(e.clientX, e.clientY);
 
-      if (elFromPoint.classList.contains("task") && elFromPoint.parentElement.id !== oldBoard) {
+      if (
+        elFromPoint.classList.contains("task") &&
+        elFromPoint.parentElement.id !== oldBoard
+      ) {
         task.board_id = elFromPoint.parentElement.id;
         fetch("http://app-react/api/task/changeBoard", {
           method: "POST",
@@ -65,15 +68,7 @@ class Tasks extends Component {
                 key={task.id}
                 className={task.done === "1" ? "task task-done" : "task"}
               >
-                <div
-                  className={
-                    task.done === "1"
-                      ? "task-description line-through"
-                      : "task-description"
-                  }
-                >
-                  {task.description}
-                </div>
+                <div className="task-description">{task.description}</div>
                 <button
                   className="task-btn"
                   onMouseDown={(e) => e.stopPropagation()}

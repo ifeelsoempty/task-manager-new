@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class CreateTask extends Component {
+class CreateTaskForm extends Component {
   state = {
     description: "",
   };
@@ -39,7 +39,7 @@ class CreateTask extends Component {
 
   render() {
     return (
-      <div className="create-task">
+      <div className="task-create-form">
         <input
           onKeyDown={(e) => (e.keyCode === 13 ? this.createTask() : false)}
           onChange={this.addDescriptionToState}
@@ -51,4 +51,4 @@ class CreateTask extends Component {
   }
 }
 
-export default CreateTask;
+export default CreateTaskForm;

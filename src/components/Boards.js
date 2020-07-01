@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Tasks from "./Tasks";
-import CreateTask from "./CreateTask";
+import CreateTaskForm from "./CreateTaskForm";
 import BoardModal from "./Modals/BoardModal";
 import Axios from "axios";
 
@@ -155,7 +155,7 @@ class Boards extends Component {
         {this.state.boards.map((board) => (
           <div className="board" key={board.id}>
             <div
-              className="board-top edit-board-btn"
+              className="board-top board-edit-btn"
               onClick={(e) => this.createBoardModal(e, board.id)}
             >
               {board.name}
@@ -168,7 +168,7 @@ class Boards extends Component {
               changeTaskBoardInState={this.changeTaskBoardInState}
               removeTaskModal={this.removeTaskModal}
             />
-            <CreateTask
+            <CreateTaskForm
               boards={this.state.boards}
               boardId={board.id}
               createTaskInState={this.createTaskInState}
@@ -176,7 +176,7 @@ class Boards extends Component {
           </div>
         ))}
         <button
-          className="board-top create-board-btn"
+          className="board-top board-create-btn"
           onClick={(e) => this.createBoardModal(e)}
         >
           Add Board +

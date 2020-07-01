@@ -9,7 +9,7 @@ class TaskModal extends Component {
 
   componentDidMount() {
     const editTaskInputDOM = document.getElementsByClassName(
-      "edit-task-input"
+      "task-edit-input"
     )[0];
     editTaskInputDOM.select();
   }
@@ -40,7 +40,7 @@ class TaskModal extends Component {
         <textarea
           onKeyDown={(e) => (e.keyCode === 13 ? this.updateTask() : false)}
           onChange={(e) => this.setState({ description: e.target.value })}
-          className="edit-task-input"
+          className="task-edit-input"
           value={this.state.description}
           style={{
             width: `${(taskCoordinates.width / 100) * 86}px`,
@@ -55,7 +55,7 @@ class TaskModal extends Component {
             width: `${(taskCoordinates.width / 100) * 86}px`,
             top: `${taskCoordinates.y}px`,
           }}
-          className="edit-btns accept-task-btn"
+          className="task-edit-btns task-accept-btn"
           onClick={this.updateTask}
         >
           Save

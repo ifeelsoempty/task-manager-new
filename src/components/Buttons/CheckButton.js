@@ -20,7 +20,7 @@ const CheckButton = ({ task, taskCoordinates, checkTaskInState }) => {
         left: `${taskCoordinates.x + (taskCoordinates.width / 100) * 89 - 5}px`,
         top: `${taskCoordinates.y}px`,
       }}
-      className="edit-btns check-btn"
+      className="task-edit-btns task-check-btn"
       onClick={checkTask}
     >
       {task.done === '0' ? '✓' : '↑'}

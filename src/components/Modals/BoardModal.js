@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class BoardModal extends Component {
   state = {
-    boardName: this.props.boardDOM.classList.contains("edit-board-btn")
+    boardName: this.props.boardDOM.classList.contains("board-edit-btn")
       ? this.props.boardDOM.innerText
       : "",
   };
@@ -41,7 +41,7 @@ class BoardModal extends Component {
       <div
         onMouseDown={(e) =>
           e.target.id === "board-modal"
-            ? boardDOM.classList.contains("edit-board-btn")
+            ? boardDOM.classList.contains("board-edit-btn")
               ? this.submitBoard("update")
               : removeBoardModal()
             : false
@@ -62,21 +62,21 @@ class BoardModal extends Component {
           }}
           onKeyDown={(e) =>
             e.keyCode === 13
-              ? boardDOM.classList.contains("edit-board-btn")
+              ? boardDOM.classList.contains("board-edit-btn")
                 ? this.submitBoard("update")
                 : this.submitBoard("create")
               : false
           }
           onChange={(e) => {
             this.setState({ boardName: e.target.value });
-            if (boardDOM.classList.contains("edit-board-btn")) {
+            if (boardDOM.classList.contains("board-edit-btn")) {
               boardDOM.innerText = e.target.value;
             }
           }}
         ></textarea>
-        {boardDOM.classList.contains("create-board-btn") ? (
+        {boardDOM.classList.contains("board-create-btn") ? (
           <button
-            className="accept-board-btn"
+            className="board-edit-btns board-accept-btn"
             style={{
               left: `${boardCoordinates.x}px`,
               top: `${boardCoordinates.y + boardCoordinates.height}px`,
@@ -88,7 +88,7 @@ class BoardModal extends Component {
           </button>
         ) : (
           <button
-            className="delete-board-btn"
+            className="board-edit-btns board-delete-btn"
             style={{
               left: `${boardCoordinates.x}px`,
               top: `${boardCoordinates.y + boardCoordinates.height}px`,
