@@ -1,7 +1,4 @@
 /.git
 /.gitignore
-/src/style/main.less
-/src/style/tasks.less
-/src/style/boards.less
 
 node_modules

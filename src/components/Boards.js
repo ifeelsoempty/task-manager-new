@@ -48,8 +48,7 @@ class Boards extends Component {
     const updatedBoards = this.state.boards.filter((item) =>
       item.id === board.id ? false : true
     );
-    console.log(board.id);
-
+    
     this.setState({ boards: updatedBoards });
   };
 
