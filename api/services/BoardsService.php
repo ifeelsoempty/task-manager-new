@@ -26,7 +26,7 @@ class BoardsService
         while ($row = $result->fetch()) {
             $boards[$i]['id'] = $row['id'];
             $boards[$i]['name'] = $row['name'];
-            $tasks = $db->query('SELECT * FROM tasks WHERE board_id = ' . $row['id'] . ' ORDER BY done ASC');
+            $tasks = $db->query('SELECT * FROM tasks WHERE board_id = ' . $row['id'] . '');
             $y = 0;
             while ($row = $tasks->fetch()) {
                 $task[$y]['id'] = $row['id'];

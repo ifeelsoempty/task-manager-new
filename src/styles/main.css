@@ -134,7 +134,7 @@ textarea:focus {
   background-color: #b5c3d8;
 }
 .task-done {
-  background-color: #b5c3d8;
+  background-color: #d7deea;
   text-decoration-line: line-through;
 }
 .task:hover .task-btn {
