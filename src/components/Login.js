@@ -11,22 +11,26 @@ class Login extends Component {
 
   logIn = () => {
     const { username, password } = this.state;
+    const user = {
+      username: username,
+      password: password,
+    };
     if (username.trim() !== "" && password.trim() !== "") {
-      fetch(
-        `http://app-react/api/userId/get?username=${username}&password=${password}`,
-        { method: "GET" }
-      )
+      fetch(`http://app-react/api/boards/get`, {
+        method: "POST",
+        body: JSON.stringify(user),
+      })
         .then((res) => res.json())
-        .then((res) => this.createBoards(res.id));
+        .then((res) => this.createBoards(res));
     } else {
       this.setState({ error: "Введите данные" });
     }
   };
 
-  createBoards = (userId) => {
-    if (userId) {
+  createBoards = (boards) => {
+    if (boards) {
       ReactDOM.render(
-        <Boards userId={userId} />,
+        <Boards boards={boards} />,
         document.getElementById("app")
       );
     } else {

@@ -2,14 +2,6 @@
 
 class BoardsService
 {
-    public static function getUserId($user)
-    {
-        $db = Db::getConnection();
-
-        $userId = $db->query('SELECT id FROM users WHERE username = "' . $user["username"] . '" AND password = "' . $user["password"] . '"')->fetch();
-
-        return $userId;
-    }
 
     public static function createBoard($board)
     {
@@ -20,20 +12,21 @@ class BoardsService
         return $board;
     }
 
-    public static function getBoards()
+    public static function getBoards($user)
     {
         $db = Db::getConnection();
 
         $boards = array();
 
-        $result = $db->query('SELECT id, name '
-            . 'FROM boards WHERE user_id = "' . $_GET['userId'] . '"'
-            . 'LIMIT 10');
+        $userId = $db->query('SELECT id FROM users WHERE username="' . $user->username . '" AND password = "' . $user->password . '"')->fetch();
+
+        $result = $db->query('SELECT * FROM boards WHERE user_id = "' . $userId['id'] . '" LIMIT 10');
 
         $i = 0;
         while ($row = $result->fetch()) {
             $boards[$i]['id'] = $row['id'];
             $boards[$i]['name'] = $row['name'];
+            $boards[$i]['user_id'] = $row['user_id'];
             $tasks = $db->query('SELECT * FROM tasks WHERE board_id = ' . $row['id'] . '');
             $y = 0;
             while ($row = $tasks->fetch()) {
