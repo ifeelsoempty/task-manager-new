@@ -5,7 +5,9 @@ const DeleteButton = ({ task, taskCoordinates, deleteTaskFromState }) => {
     fetch("http://app-react/api/task/delete", {
       method: "POST",
       body: JSON.stringify(task),
-    }).then(() => deleteTaskFromState(task));
+    })
+      .then((res) => res.json())
+      .then((res) => deleteTaskFromState(res));
   }
 
   return (

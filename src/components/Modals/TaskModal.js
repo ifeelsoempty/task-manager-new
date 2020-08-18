@@ -22,7 +22,9 @@ class TaskModal extends Component {
       fetch("http://app-react/api/task/update", {
         method: "POST",
         body: JSON.stringify(task),
-      }).then(() => this.props.updateTaskInState(task));
+      })
+        .then((res) => res.json())
+        .then((res) => this.props.updateTaskInState(res));
     }
   };
 

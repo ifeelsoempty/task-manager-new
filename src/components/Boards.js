@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import Tasks from "./Tasks";
 import CreateTaskForm from "./CreateTaskForm";
 import BoardModal from "./Modals/BoardModal";
-import Axios from "axios";
 
 class Boards extends Component {
   state = {
@@ -12,7 +11,6 @@ class Boards extends Component {
 
   componentDidMount() {
     this.setState({ boards: this.props.boards });
-    console.log(this.props.boards);
   }
 
   changeBoardState = (operation, board) => {

@@ -21,16 +21,18 @@ class BoardModal extends Component {
   submitBoard = (operation) => {
     if (this.state.boardName.trim() !== "") {
       const board = {
-        id: operation === "create"
-            ? String(+this.props.boards[this.props.boards.length - 1].id + 1)
-            : this.props.boardId,
+        id: this.props.boardId,
         name: this.state.boardName,
-        userId: String(+this.props.boards[this.props.boards.length - 1].user_id)
+        userId: String(
+          +this.props.boards[this.props.boards.length - 1].user_id
+        ),
       };
       fetch(`http://app-react/api/boards/${operation}`, {
         method: "POST",
         body: JSON.stringify(board),
-      }).then(() => this.props.changeBoardState(operation, board));
+      })
+        .then((res) => res.json())
+        .then((res) => this.props.changeBoardState(operation, res));
     }
   };
 

@@ -10,31 +10,19 @@ class CreateTaskForm extends Component {
   };
 
   createTask = () => {
-    //Алгоритм поиска таски с наибольшем Id в массиве boards
-    if (this.state.description.trim() !== "") {
-      let taskId = 0;
-      this.props.boards.map((boardItem) => {
-        let maxId = 0;
-        if (boardItem.tasks)
-          boardItem.tasks.map((taskItem) =>
-            +taskItem.id > maxId ? (maxId = +taskItem.id) : false
-          );
-        if (maxId > taskId) taskId = maxId;
-      });
+    const task = {
+      description: this.state.description,
+      board_id: this.props.boardId,
+      done: "0",
+    };
 
-      const task = {
-        id: String(taskId + 1),
-        description: this.state.description,
-        board_id: this.props.boardId,
-        done: "0",
-      };
-
-      fetch("http://app-react/api/task/create", {
-        method: "POST",
-        body: JSON.stringify(task),
-      }).then(() => this.props.createTaskInState(task));
-      this.setState({ description: "" });
-    }
+    fetch("http://app-react/api/task/create", {
+      method: "POST",
+      body: JSON.stringify(task),
+    })
+      .then((res) => res.json())
+      .then((res) => this.props.createTaskInState(res));
+    this.setState({ description: "" });
   };
 
   render() {

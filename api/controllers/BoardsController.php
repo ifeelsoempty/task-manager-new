@@ -4,6 +4,21 @@ include_once ROOT . '/services/BoardsService.php';
 
 class BoardsController
 {
+    public function SignIn()
+    {
+        $json_str = file_get_contents('php://input');
+        $user = json_decode($json_str);
+
+        $userId = BoardsService::signIn($user);
+
+        if (!empty($userId)) {
+            echo json_encode($userId[0]);
+        } else {
+            echo false;
+        }
+        return true;
+    }
+
     public function CreateBoard()
     {
         $json_str = file_get_contents('php://input');
@@ -16,16 +31,10 @@ class BoardsController
     }
 
     public function GetBoards()
-    {   
-        session_start();
-        $json_str = file_get_contents('php://input');
-        $user = json_decode($json_str);
-
-        $boards = array();
-        $boards = BoardsService::getBoards($user);
+    {
+        $boards = BoardsService::getBoards();
 
         echo json_encode($boards);
-
         return true;
     }
 
@@ -51,17 +60,17 @@ class BoardsController
         return true;
     }
 
-    public function TasksByBoardId($id)
-    {
-        $tasksById = array();
-        $tasksById = BoardsService::getTasksByBoardId($id);
+    // public function TasksByBoardId($id)
+    // {
+    //     $tasksById = array();
+    //     $tasksById = BoardsService::getTasksByBoardId($id);
 
-        if ($tasksById == false) {
-            getResponse404Error('Board not Found');
-        } else {
-            echo json_encode($tasksById);
-        }
+    //     if ($tasksById == false) {
+    //         getResponse404Error('Board not Found');
+    //     } else {
+    //         echo json_encode($tasksById);
+    //     }
 
-        return true;
-    }
+    //     return true;
+    // }
 }

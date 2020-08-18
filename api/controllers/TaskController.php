@@ -26,17 +26,6 @@ class TaskController
         return true;
     }
 
-    public function ChangeTaskBoard()
-    {
-        $json_str = file_get_contents('php://input');
-        $task = json_decode($json_str);
-
-        $updated = TaskService::changeTaskBoard($task);
-
-        echo json_encode($updated);
-        return true;
-    }
-
     public function DeleteTask()
     {
         $json_str = file_get_contents('php://input');
@@ -45,6 +34,17 @@ class TaskController
         $deleted = TaskService::deleteTask($task);
 
         echo json_encode($deleted);
+        return true;
+    }
+
+    public function ChangeTaskBoard()
+    {
+        $json_str = file_get_contents('php://input');
+        $task = json_decode($json_str);
+
+        $changed = TaskService::changeTaskBoard($task);
+
+        echo json_encode($changed);
         return true;
     }
 }

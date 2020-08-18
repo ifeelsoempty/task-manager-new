@@ -2,25 +2,34 @@
 
 class BoardsService
 {
+    public static function signIn($user)
+    {
+        $db = Db::getConnection();
+
+        $userId = $db->query('SELECT id FROM users WHERE username="' . $user->username . '" AND password = "' . $user->password . '"')->fetch();
+
+        return $userId;
+    }
 
     public static function createBoard($board)
     {
         $db = Db::getConnection();
+        $link = mysqli_connect("localhost", "root", "", "tk_man");
 
-        $board = $db->query("INSERT INTO `boards` (`id`, `name`, `user_id`) VALUES (" . $board->id . ", '" . $board->name . "', '" . $board->userId . "');");
+        $query = "INSERT INTO `boards` (`name`, `user_id`) VALUES ('" . $board->name . "', '" . $board->userId . "');";
+        mysqli_query($link, $query);
 
-        return $board;
+        $created_id = mysqli_insert_id($link);
+        $created = $db->query("SELECT * FROM boards WHERE id = " . $created_id)->fetch();
+
+        return $created;
     }
 
-    public static function getBoards($user)
+    public static function getBoards()
     {
         $db = Db::getConnection();
-
         $boards = array();
-
-        $userId = $db->query('SELECT id FROM users WHERE username="' . $user->username . '" AND password = "' . $user->password . '"')->fetch();
-
-        $result = $db->query('SELECT * FROM boards WHERE user_id = "' . $userId['id'] . '" LIMIT 10');
+        $result = $db->query('SELECT * FROM boards WHERE user_id = ' . $_GET['userId'] . ' LIMIT 10');
 
         $i = 0;
         while ($row = $result->fetch()) {
@@ -46,8 +55,8 @@ class BoardsService
     public static function updateBoard($board)
     {
         $db = Db::getConnection();
-        printf($board->name);
-        $board = $db->query("UPDATE `boards` SET name = '" . $board->name . "' WHERE `id` = " . $board->id . " ");
+
+        $db->query("UPDATE `boards` SET name = '" . $board->name . "' WHERE `id` = " . $board->id . " ");
 
         return $board;
     }
@@ -55,26 +64,24 @@ class BoardsService
     public static function deleteBoard($board)
     {
         $db = Db::getConnection();
-        printf($board->name);
-        $board = $db->query("DELETE FROM `boards` WHERE `boards`.`id` = " . $board->id . " ");
+
+        $db->query("DELETE FROM `boards` WHERE `boards`.`id` = " . $board->id);
 
         return $board;
     }
 
-    public static function getTasksByBoardId($id)
-    {
+    // public static function getTasksByBoardId($id)
+    // {
+    //     if ($id) {
+    //         $db = Db::getConnection();
 
+    //         $result = $db->query('SELECT * FROM tasks WHERE board_id = ' . $id . ' ORDER BY done ASC');
 
-        if ($id) {
-            $db = Db::getConnection();
+    //         $result->setFetchMode(PDO::FETCH_ASSOC);
 
-            $result = $db->query('SELECT * FROM tasks WHERE board_id = ' . $id . ' ORDER BY done ASC');
+    //         $taskById = $result->fetchAll();
 
-            $result->setFetchMode(PDO::FETCH_ASSOC);
-
-            $taskById = $result->fetchAll();
-
-            return $taskById;
-        }
-    }
+    //         return $taskById;
+    //     }
+    // }
 }

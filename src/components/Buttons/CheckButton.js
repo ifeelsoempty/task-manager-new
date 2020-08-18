@@ -2,8 +2,7 @@ import React from "react";
 
 const CheckButton = ({ task, taskCoordinates, checkTaskInState }) => {
   function checkTask() {
-    task.done === '1' ? task.done = '0': task.done = '1';
-    console.log(task.done)
+    task.done === "1" ? (task.done = "0") : (task.done = "1");
     fetch("http://app-react/api/task/update", {
       method: "POST",
       headers: {
@@ -11,7 +10,9 @@ const CheckButton = ({ task, taskCoordinates, checkTaskInState }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
-    }).then(() => checkTaskInState(task));
+    })
+      .then((res) => res.json())
+      .then((res) => checkTaskInState(res));
   }
 
   return (
@@ -23,7 +24,7 @@ const CheckButton = ({ task, taskCoordinates, checkTaskInState }) => {
       className="task-edit-btns task-check-btn"
       onClick={checkTask}
     >
-      {task.done === '0' ? '✓' : '↑'}
+      {task.done === "0" ? "✓" : "↑"}
     </button>
   );
 };
