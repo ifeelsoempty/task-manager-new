@@ -1,0 +1,284 @@
+body {
+  margin: 0;
+  font-family: "RobotoRegular", "Arial", "sans-serif";
+  font-weight: 100;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0000001b;
+}
+@font-face {
+  font-family: "RobotoThin";
+  src: url("fonts/Roboto/Roboto-Thin.ttf") format("truetype");
+}
+@font-face {
+  font-family: "RobotoRegular";
+  src: url("fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+button {
+  border: 0;
+  outline: none;
+}
+button:active,
+button:focus {
+  outline: none !important;
+}
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+input {
+  border: 0;
+  outline: 0;
+}
+textarea {
+  border: 0 !important;
+  resize: none;
+  overflow: hidden;
+}
+textarea:focus {
+  outline: 0 !important;
+}
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #000000a8;
+}
+.boards {
+  display: flex;
+  margin: 25px 0;
+}
+.board {
+  background: #ffffff;
+  height: 100%;
+  min-width: 350px;
+  max-width: 350px;
+  margin-left: 25px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00000044;
+}
+.board-top {
+  background: #839abe;
+  width: 100%;
+  max-height: 94px;
+  min-height: 52px;
+  padding: 5px 10px;
+  font-family: "RobotoThin";
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: 500;
+  border-radius: 4px 4px 0 0;
+}
+.board-input {
+  position: absolute;
+  background: transparent;
+  color: #ffffff;
+  margin: 0;
+  font-family: "RobotoThin";
+  font-size: 28px;
+  font-weight: 500;
+  padding: 5px 10px;
+}
+.board-create-btn {
+  display: flex;
+  max-width: 350px;
+  height: 100%;
+  margin-left: 25px;
+  padding: 5px 10px;
+  color: #ffffff;
+  font-family: "RobotoThin";
+  font-size: 28px;
+  font-weight: 500;
+}
+.board-create-btn:hover {
+  opacity: 0.8;
+}
+.board-edit-btns {
+  position: relative;
+  height: 38px;
+  color: #ffffff;
+  box-shadow: 0 0 3px #00000044;
+  border-radius: 0 0 4px 4px;
+}
+.board-accept-btn {
+  background-color: #6fc058;
+}
+.board-accept-btn:hover {
+  background-color: #5fb946;
+}
+.board-delete-btn {
+  background-color: #ff7171;
+}
+.board-delete-btn:hover {
+  background-color: #ff5858;
+}
+.task {
+  display: flex;
+  position: relative;
+  padding: 8px 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.task * {
+  pointer-events: none;
+}
+.task-description {
+  width: 85%;
+}
+.task:hover {
+  background-color: #b5c3d8;
+}
+.task-done {
+  background-color: #d7deea;
+  text-decoration-line: line-through;
+}
+.task:hover .task-btn {
+  display: block;
+}
+.task-btn {
+  display: none;
+  position: absolute;
+  pointer-events: auto;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  top: 5px;
+  right: 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 0;
+  outline: 0;
+  opacity: 0.5;
+}
+.task-btn:hover {
+  box-shadow: 7px 7px 7px inset #839abe;
+}
+.task-btn:active {
+  box-shadow: 10px 10px 10px inset #839abe;
+}
+.task-btn-image {
+  width: 20px;
+  height: 20px;
+}
+.task-create-form {
+  display: flex;
+  background-color: #839abe;
+  padding: 3px;
+  font-size: 14px;
+  border-radius: 0 0 4px 4px;
+}
+.task-create-form * {
+  border-radius: 0 0 4px 4px;
+}
+.task-create-form input {
+  width: 100%;
+  height: 31px;
+  padding: 5px;
+  color: #839abe;
+}
+.task-create-form input:focus {
+  box-shadow: 0 0 3px inset #5472a0;
+}
+.task-create-form button {
+  background-color: transparent;
+  margin-left: 3px;
+  border: none;
+  color: #ffffff;
+}
+.task-create-form button:hover {
+  box-shadow: 3px 3px 3px inset #5472a0;
+}
+.task-create-form button:active {
+  box-shadow: 5px 5px 5px inset #5472a0;
+}
+.task-edit-input {
+  position: relative;
+  min-height: 64px;
+  padding: 8px 10px;
+  border-radius: 4px;
+}
+.task-edit-btns {
+  display: block;
+  position: absolute;
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  box-shadow: 3px 3px 3px #00000044;
+}
+.task-edit-btns:hover {
+  box-shadow: 5px 5px 5px #00000044;
+}
+.task-accept-btn {
+  background-color: #5aac44;
+  position: relative;
+}
+.task-accept-btn:hover {
+  background-color: #478736;
+}
+.task-delete-btn {
+  background-color: #d34545;
+}
+.task-delete-btn:hover {
+  background-color: #b92c2c;
+}
+.task-check-btn {
+  background-color: #1b72ff;
+}
+.task-check-btn:hover {
+  background-color: #0058e7;
+}
+.login {
+  font-family: "RobotoRegular";
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #ffffff;
+  margin: 200px auto;
+  width: 400px;
+  padding: 15px;
+  height: 250px;
+  box-shadow: 1px 1px 5px #00000044;
+}
+.login * {
+  border-radius: 4px;
+}
+.login-error {
+  color: red;
+  width: 100%;
+}
+.login-lower-block {
+  display: flex;
+  justify-content: space-around;
+}
+.login title {
+  display: block;
+  align-self: start;
+}
+.login input {
+  padding: 5px;
+  font-size: 20px;
+  border: 2px solid rgba(128, 128, 128, 0.26666667);
+}
+.login input:focus {
+  border: 2px solid #5472a0;
+}
+.login button {
+  color: #ffffff;
+  background-color: #5472a0;
+  width: 100px;
+  height: 30px;
+  justify-self: flex-end;
+}
+.login button:hover {
+  background-color: #435a7f;
+}
+.login button:active {
+  background-color: #3a4e6e;
+}

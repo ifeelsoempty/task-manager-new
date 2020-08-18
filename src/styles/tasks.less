@@ -1,0 +1,145 @@
+// main: main.less
+
+.task {
+  display: flex;
+  position: relative;
+  padding: 8px 10px;
+  cursor: pointer;
+  user-select: none;
+
+  * {
+    pointer-events: none;
+  }
+
+  &-description {
+    width: 85%;
+  }
+
+  &:hover {
+    background-color: @extra-light-color;
+  }
+
+  &-done {
+    background-color: lighten(@extra-light-color, 10%);
+    text-decoration-line: line-through;
+  }
+
+  &:hover &-btn {
+    display: block;
+  }
+
+  &-btn {
+    display: none;
+    position: absolute;
+    pointer-events: auto;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+    border-radius: @radius;
+    border: 0;
+    outline: 0;
+    opacity: 0.5;
+
+    &:hover {
+      box-shadow: 7px 7px 7px inset @main-color;
+    }
+    &:active {
+      box-shadow: 10px 10px 10px inset @main-color;
+    }
+
+    &-image {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &-create-form {
+    display: flex;
+    background-color: @main-color;
+    padding: 3px;
+    font-size: 14px;
+    border-radius: 0 0 @radius @radius;
+
+    * {
+      border-radius: 0 0 @radius @radius;
+    }
+
+    input {
+      width: 100%;
+      height: 31px;
+      padding: 5px;
+      color: @main-color;
+    }
+
+    input:focus {
+      box-shadow: 0 0 3px inset @extra-dark-color;
+    }
+
+    button {
+      background-color: transparent;
+      margin-left: 3px;
+      border: none;
+      color: #ffffff;
+    }
+
+    button:hover {
+      box-shadow: 3px 3px 3px inset @extra-dark-color;
+    }
+
+    button:active {
+      box-shadow: 5px 5px 5px inset @extra-dark-color;
+    }
+  }
+
+  &-edit-input {
+    position: relative;
+    min-height: 64px;
+    padding: 8px 10px;
+    border-radius: @radius;
+  }
+
+  &-edit-btns {
+    display: block;
+    position: absolute;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: @radius;
+    box-shadow: 3px 3px 3px @shadow-color;
+
+    &:hover {
+      box-shadow: 5px 5px 5px @shadow-color;
+    }
+  }
+
+  &-accept-btn {
+    @accept-btn-color: rgb(90, 172, 68);
+    background-color: @accept-btn-color;
+    position: relative;
+
+    &:hover {
+      background-color: darken(@accept-btn-color, 10%);
+    }
+  }
+
+  &-delete-btn {
+    @delete-btn-color: rgb(211, 69, 69);
+    background-color: @delete-btn-color;
+
+    &:hover {
+      background-color: darken(@delete-btn-color, 10%);
+    }
+  }
+
+  &-check-btn {
+    @check-btn-color: rgb(27, 114, 255);
+    background-color: @check-btn-color;
+
+    &:hover {
+      background-color: darken(@check-btn-color, 10%);
+    }
+  }
+}
