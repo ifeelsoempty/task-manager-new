@@ -1,18 +1,9 @@
 body {
   margin: 0;
-  font-family: "RobotoRegular", "Arial", "sans-serif";
-  font-weight: 100;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0000001b;
-}
-@font-face {
-  font-family: "RobotoThin";
-  src: url("fonts/Roboto/Roboto-Thin.ttf") format("truetype");
-}
-@font-face {
-  font-family: "RobotoRegular";
-  src: url("fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  background: #8f8f8f17;
 }
 button {
   border: 0;
@@ -58,30 +49,31 @@ textarea:focus {
   min-width: 350px;
   max-width: 350px;
   margin-left: 25px;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 0 10px #00000044;
 }
 .board-top {
-  background: #839abe;
+  background: #6587bd;
   width: 100%;
   max-height: 94px;
   min-height: 52px;
   padding: 5px 10px;
-  font-family: "RobotoThin";
   color: #ffffff;
   cursor: pointer;
   font-size: 28px;
-  font-weight: 500;
-  border-radius: 4px 4px 0 0;
+  font-weight: 100;
+  border-radius: 5px 5px 0 0;
+}
+.board-top:hover {
+  opacity: 0.8;
 }
 .board-input {
   position: absolute;
   background: transparent;
   color: #ffffff;
   margin: 0;
-  font-family: "RobotoThin";
   font-size: 28px;
-  font-weight: 500;
+  font-weight: 100;
   padding: 5px 10px;
 }
 .board-create-btn {
@@ -91,19 +83,15 @@ textarea:focus {
   margin-left: 25px;
   padding: 5px 10px;
   color: #ffffff;
-  font-family: "RobotoThin";
   font-size: 28px;
-  font-weight: 500;
-}
-.board-create-btn:hover {
-  opacity: 0.8;
+  font-weight: 100;
 }
 .board-edit-btns {
   position: relative;
   height: 38px;
   color: #ffffff;
   box-shadow: 0 0 3px #00000044;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 5px 5px;
 }
 .board-accept-btn {
   background-color: #6fc058;
@@ -121,7 +109,10 @@ textarea:focus {
   display: flex;
   position: relative;
   padding: 8px 10px;
+  margin: 10px;
   cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 2px 2px 7px #9bb1d4;
   user-select: none;
 }
 .task * {
@@ -131,10 +122,12 @@ textarea:focus {
   width: 85%;
 }
 .task:hover {
-  background-color: #b5c3d8;
+  background: #6587bd;
+  color: #ffffff;
 }
 .task-done {
-  background-color: #d7deea;
+  background-color: #9bb1d4;
+  color: #ffffff;
   text-decoration-line: line-through;
 }
 .task:hover .task-btn {
@@ -145,21 +138,21 @@ textarea:focus {
   position: absolute;
   pointer-events: auto;
   background-color: transparent;
+  background: url("http://app-react/src/images/edit-btn.svg") no-repeat center;
   width: 30px;
   height: 30px;
   top: 5px;
   right: 15px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 0;
   outline: 0;
-  opacity: 0.5;
 }
 .task-btn:hover {
-  box-shadow: 7px 7px 7px inset #839abe;
+  box-shadow: 7px 7px 7px inset #406195;
 }
 .task-btn:active {
-  box-shadow: 10px 10px 10px inset #839abe;
+  box-shadow: 10px 10px 10px inset #6587bd;
 }
 .task-btn-image {
   width: 20px;
@@ -167,22 +160,22 @@ textarea:focus {
 }
 .task-create-form {
   display: flex;
-  background-color: #839abe;
+  background-color: #6587bd;
   padding: 3px;
   font-size: 14px;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 5px 5px;
 }
 .task-create-form * {
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 5px 5px;
 }
 .task-create-form input {
   width: 100%;
   height: 31px;
   padding: 5px;
-  color: #839abe;
+  color: #6587bd;
 }
 .task-create-form input:focus {
-  box-shadow: 0 0 3px inset #5472a0;
+  box-shadow: 0 0 3px inset #406195;
 }
 .task-create-form button {
   background-color: transparent;
@@ -191,16 +184,16 @@ textarea:focus {
   color: #ffffff;
 }
 .task-create-form button:hover {
-  box-shadow: 3px 3px 3px inset #5472a0;
+  box-shadow: 3px 3px 3px inset #406195;
 }
 .task-create-form button:active {
-  box-shadow: 5px 5px 5px inset #5472a0;
+  box-shadow: 5px 5px 5px inset #406195;
 }
 .task-edit-input {
   position: relative;
   min-height: 64px;
   padding: 8px 10px;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 .task-edit-btns {
   display: block;
@@ -208,7 +201,7 @@ textarea:focus {
   color: #ffffff;
   width: 40px;
   height: 40px;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 3px 3px 3px #00000044;
 }
 .task-edit-btns:hover {
@@ -247,7 +240,7 @@ textarea:focus {
   box-shadow: 1px 1px 5px #00000044;
 }
 .login * {
-  border-radius: 4px;
+  border-radius: 5px;
 }
 .login-error {
   color: red;
@@ -267,18 +260,18 @@ textarea:focus {
   border: 2px solid rgba(128, 128, 128, 0.26666667);
 }
 .login input:focus {
-  border: 2px solid #5472a0;
+  border: 2px solid #406195;
 }
 .login button {
   color: #ffffff;
-  background-color: #5472a0;
+  background-color: #406195;
   width: 100px;
   height: 30px;
   justify-self: flex-end;
 }
 .login button:hover {
-  background-color: #435a7f;
+  background-color: #314a72;
 }
 .login button:active {
-  background-color: #3a4e6e;
+  background-color: #293e60;
 }

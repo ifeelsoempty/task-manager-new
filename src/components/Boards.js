@@ -103,15 +103,31 @@ class Boards extends Component {
     this.removeTaskModal();
   };
 
-  changeTaskBoardInState = (task, oldBoard) => {
+  changeTaskBoardInState = (task, oldBoardId, elFromPoint) => {
     const updatedBoards = this.state.boards;
+
     updatedBoards.map((boardItem) => {
       if (!boardItem.tasks) boardItem.tasks = [];
-      if (boardItem.id === oldBoard) {
+
+      //Мб проблема тут
+      if (boardItem.id === oldBoardId) {
         boardItem.tasks = boardItem.tasks.filter((taskItem) =>
           taskItem.id === task.id ? false : true
         );
-      } else if (boardItem.id === task.board_id) boardItem.tasks.push(task);
+      }
+
+      //Сначала удаляет, а потом ставит, соответственно индекс смещается на +1 из за того что elfrompoint равен следующему значению
+      //Нужно как то удалять предыдущую таску
+      if (boardItem.id === task.board_id) {
+        let index = 0;
+
+        boardItem.tasks.map((taskItem) => {
+          if (`task-${taskItem.id}` === elFromPoint.id) {
+            index = boardItem.tasks.indexOf(taskItem);
+          }
+        });
+        boardItem.tasks.splice(index + 1, 0, task);
+      }
     });
 
     this.setState({ updatedBoards });

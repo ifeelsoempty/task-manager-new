@@ -61,12 +61,14 @@ class Login extends Component {
             <input
               value={this.state.username}
               onChange={(e) => this.setState({ username: e.target.value })}
+              onKeyDown={(e) => (e.keyCode === 13 ? this.logIn() : false)}
             />
             <title>Password</title>
             <input
               value={this.state.password}
               onChange={(e) => this.setState({ password: e.target.value })}
               type="password"
+              onKeyDown={(e) => (e.keyCode === 13 ? this.logIn() : false)}
             />
             <div className="login-lower-block">
               <title className="login-error">{this.state.error}</title>

@@ -14,7 +14,7 @@ class BoardsController
         if (!empty($userId)) {
             echo json_encode($userId[0]);
         } else {
-            echo false;
+            echo 'false';
         }
         return true;
     }

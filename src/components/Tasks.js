@@ -21,6 +21,7 @@ class Tasks extends Component {
     const taskDOM = e.target;
     taskDOM.style.zIndex = "999";
     const taskCoordinates = taskDOM.getBoundingClientRect();
+    taskDOM.style.cursor = "grabbing";
 
     const onMouseMove = (e) => {
       taskDOM.style.top =
@@ -28,32 +29,32 @@ class Tasks extends Component {
       taskDOM.style.left =
         e.clientX - taskCoordinates.x - taskDOM.offsetWidth / 2 + "px";
     };
-
     document.addEventListener("mousemove", onMouseMove);
 
-    taskDOM.addEventListener("mouseup", (e) => {
-      taskDOM.hidden = true;
-      const oldBoard = task.board_id;
+    const onMouseUp = (e) => {
+      taskDOM.style.visibility = "hidden";
+      const oldBoardId = task.board_id;
       const elFromPoint = document.elementFromPoint(e.clientX, e.clientY);
 
-      if (
-        elFromPoint.classList.contains("task") &&
-        elFromPoint.parentElement.id !== oldBoard
-      ) {
+      if (elFromPoint.classList.contains("task")) {
         task.board_id = elFromPoint.parentElement.id;
         fetch("http://app-react/api/task/changeBoard", {
           method: "POST",
           body: JSON.stringify(task),
-        }).then(() => this.props.changeTaskBoardInState(task, oldBoard));
+        });
+        this.props.changeTaskBoardInState(task, oldBoardId, elFromPoint);
       }
 
-      taskDOM.hidden = false;
+      taskDOM.style.visibility = "visible";
       taskDOM.style.top = "";
       taskDOM.style.left = "";
       taskDOM.style.zIndex = "";
       taskDOM.removeAttribute("style");
+
+      taskDOM.removeEventListener("mouseup", onMouseUp);
       document.removeEventListener("mousemove", onMouseMove);
-    });
+    };
+    taskDOM.addEventListener("mouseup", onMouseUp);
   };
 
   render() {
@@ -73,13 +74,7 @@ class Tasks extends Component {
                   className="task-btn"
                   onMouseDown={(e) => e.stopPropagation()}
                   onClick={() => this.createTaskModal(task)}
-                >
-                  <img
-                    alt="Edit"
-                    src="https://img.icons8.com/windows/20/000000/edit.png"
-                    className="task-btn-image"
-                  />
-                </button>
+                ></button>
               </div>
             ))
           : false}

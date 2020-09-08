@@ -4,7 +4,10 @@
   display: flex;
   position: relative;
   padding: 8px 10px;
+  margin: 10px;
   cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 2px 2px 7px @extra-light-color;
   user-select: none;
 
   * {
@@ -16,11 +19,13 @@
   }
 
   &:hover {
-    background-color: @extra-light-color;
+    background: @main-color;
+    color: #ffffff;
   }
 
   &-done {
-    background-color: lighten(@extra-light-color, 10%);
+    background-color: @extra-light-color;
+    color: #ffffff;
     text-decoration-line: line-through;
   }
 
@@ -33,6 +38,7 @@
     position: absolute;
     pointer-events: auto;
     background-color: transparent;
+    background: url("http://app-react/src/images/edit-btn.svg") no-repeat center;
     width: 30px;
     height: 30px;
     top: 5px;
@@ -41,10 +47,9 @@
     border-radius: @radius;
     border: 0;
     outline: 0;
-    opacity: 0.5;
 
     &:hover {
-      box-shadow: 7px 7px 7px inset @main-color;
+      box-shadow: 7px 7px 7px inset @extra-dark-color;
     }
     &:active {
       box-shadow: 10px 10px 10px inset @main-color;
